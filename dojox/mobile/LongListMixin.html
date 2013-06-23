@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dojox/mobile/LongListMixin &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../../index.html" />
+    <link rel="up" title="DojoX" href="../contents.html" />
+    <link rel="next" title="dojox/mobile/Opener" href="Opener.html" />
+    <link rel="prev" title="dojox/mobile/ListItem" href="ListItem.html" />
+
+    <link rel="stylesheet" href="../../_static/css/site.css">
+    <link rel="stylesheet" href="../../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojox-mobile-longlistmixin">
+<span id="dojox-mobile-filteredlistmixin"></span><h1><a class="toc-backref" href="#id1">dojox/mobile/LongListMixin</a><a class="headerlink" href="#dojox-mobile-longlistmixin" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">since:</th><td class="field-body">V1.9</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#dojox-mobile-longlistmixin" id="id1">dojox/mobile/LongListMixin</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#properties" id="id3">Properties</a></li>
+<li><a class="reference internal" href="#methods" id="id4">Methods</a></li>
+<li><a class="reference internal" href="#examples" id="id5">Examples</a></li>
+<li><a class="reference internal" href="#see-also" id="id6">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This mixin enhances scrolling performances of dojox/mobile list widgets, that is, instances of
+<a class="reference internal" href="RoundRectList.html#dojox-mobile-roundrectlist"><em>dojox/mobile/RoundRectList</em></a> and any of its subclasses:</p>
+<ul class="simple">
+<li><a class="reference internal" href="RoundRectStoreList.html#dojox-mobile-roundrectstorelist"><em>dojox/mobile/RoundRectStoreList</em></a></li>
+<li><a class="reference internal" href="RoundRectDataList.html#dojox-mobile-roundrectdatalist"><em>dojox/mobile/RoundRectDataList</em></a></li>
+<li><a class="reference internal" href="EdgeToEdgeList.html#dojox-mobile-edgetoedgelist"><em>dojox/mobile/EdgeToEdgeList</em></a></li>
+<li><a class="reference internal" href="EdgeToEdgeStoreList.html#dojox-mobile-edgetoedgestorelist"><em>dojox/mobile/EdgeToEdgeStoreList</em></a></li>
+<li><a class="reference internal" href="EdgeToEdgeDataList.html#dojox-mobile-edgetoedgedatalist"><em>dojox/mobile/EdgeToEdgeDataList</em></a></li>
+</ul>
+<p>Lists with many items are known to cause performance problems
+due the the large number of DOM nodes that must be layout by the browser.
+The number of items from which performance problems arise depends highly on
+the platform and device, and typically ranges from hundreds to thousands.</p>
+<p>When mixing this class into a list widget, and when the list is contained in a
+<a class="reference internal" href="ScrollableView.html#dojox-mobile-scrollableview"><em>dojox/mobile/ScrollableView</em></a> or a
+<a class="reference internal" href="ScrollablePane.html#dojox-mobile-scrollablepane"><em>dojox/mobile/ScrollablePane</em></a>,
+the list items are dynamically added/removed to/from the DOM as needed as the list scrolls,
+to minimize the number of DOM nodes loaded at any given time.</p>
+<p>In most cases, all that is needed is to add the mixin, and the list will transparently
+scroll faster. The mixin properties below can be used to fine-tune performances if needed.</p>
+</div>
+<div class="section" id="properties">
+<h2><a class="toc-backref" href="#id3">Properties</a><a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>The mixin adds to the list widget the following properties:</p>
+<ul class="simple">
+<li><strong>pageSize</strong>: Number (default: <tt class="docutils literal"><span class="pre">20</span></tt>) - The number of list items that are loaded at a time.</li>
+<li><strong>maxPages</strong>: Number (default: <tt class="docutils literal"><span class="pre">5</span></tt>) - The number of pages above which previous pages will
+be unloaded.</li>
+<li><strong>unloadPages</strong>: Number (default: <tt class="docutils literal"><span class="pre">1</span></tt>) - The number of pages that will be unloaded when
+<tt class="docutils literal"><span class="pre">maxPages</span></tt> is reached.</li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h2><a class="toc-backref" href="#id4">Methods</a><a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>The mixin does no add any new methods to the list widget, but it overrides the
+<tt class="docutils literal"><span class="pre">addChild</span></tt>, <tt class="docutils literal"><span class="pre">removeChild</span></tt>, <tt class="docutils literal"><span class="pre">getChildren</span></tt> and <tt class="docutils literal"><span class="pre">resize</span></tt> methods.</p>
+<p><strong>Note</strong>: The list items must always be manipulated using the
+<tt class="docutils literal"><span class="pre">addChild</span></tt>, <tt class="docutils literal"><span class="pre">removeChild</span></tt> and <tt class="docutils literal"><span class="pre">getChildren</span></tt> methods.
+If list items are added, removed or retrieved directly using the DOM API, the list may be corrupted.</p>
+<p><strong>Note</strong>: The mixin needs to be notified when the list is resized, so it loads the correct
+number of items in the DOM to fill the visible area. For this the <tt class="docutils literal"><span class="pre">resize</span></tt> method is overridden,
+and must be called whenever the list size changes. This is done automatically in most cases, but
+when the list is initially hidden (for example, a list contained in a
+<a class="reference internal" href="SimpleDialog.html#dojox-mobile-simpledialog"><em>dojox/mobile/SimpleDialog</em></a>),
+the application must call <tt class="docutils literal"><span class="pre">resize()</span></tt> explicitly on the parent
+scrollable view or another ancestor after the list is made visible.</p>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="declarative-example-roundrectlist-with-longlistmixin">
+<h3>Declarative example: RoundRectList with LongListMixin<a class="headerlink" href="#declarative-example-roundrectlist-with-longlistmixin" title="Permalink to this headline">¶</a></h3>
+<p>The following example shows a
+<a class="reference internal" href="RoundRectList.html#dojox-mobile-roundrectlist"><em>dojox/mobile/RoundRectList</em></a>
+created in markup and using <tt class="docutils literal"><span class="pre">LongListMixin</span></tt>.
+The list contains 1000 items (added programmatically) but no more than 100 items will actually be added to the DOM.</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'inline', pluginArgs:{ dojoConfig: 'async: true, parseOnLoad: true', version:'1.9' }, width:'600', height:'400', toolbar:'', themename:'deviceTheme'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+        <span class="s2">&quot;dojo/ready&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dijit/registry&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/ListItem&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/parser&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/compat&quot;</span><span class="p">,</span> <span class="c1">// For non-webkit browsers (FF, IE)</span>
+        <span class="s2">&quot;dojox/mobile/ScrollableView&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/LongListMixin&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ready</span><span class="p">,</span> <span class="nx">registry</span><span class="p">,</span> <span class="nx">ListItem</span><span class="p">){</span>
+        <span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+                <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">registry</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&quot;list&quot;</span><span class="p">);</span>
+                <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+                        <span class="nx">list</span><span class="p">.</span><span class="nx">addChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">ListItem</span><span class="p">({</span> <span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;Item &quot;</span><span class="o">+</span><span class="nx">i</span> <span class="p">}));</span>
+                <span class="p">}</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+        &quot;dojo/ready&quot;,
+        &quot;dijit/registry&quot;,
+        &quot;dojox/mobile/ListItem&quot;,
+        &quot;dojox/mobile/parser&quot;,
+        &quot;dojox/mobile&quot;,
+        &quot;dojox/mobile/compat&quot;, // For non-webkit browsers (FF, IE)
+        &quot;dojox/mobile/ScrollableView&quot;,
+        &quot;dojox/mobile/LongListMixin&quot;
+], function(ready, registry, ListItem){
+        ready(function(){
+                var list = registry.byId(&quot;list&quot;);
+                for(var i = 0; i &lt; 1000; i++){
+                        list.addChild(new ListItem({ label: &quot;Item &quot;+i }));
+                }
+        });
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/ScrollableView&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/Heading&quot;</span> <span class="na">data-dojo-props=</span><span class="s">&quot;fixed: &#39;top&#39;&quot;</span><span class="nt">&gt;</span>Long list (declarative)<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;list&quot;</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/RoundRectList&quot;</span>
+                <span class="na">data-dojo-mixins=</span><span class="s">&quot;dojox/mobile/LongListMixin&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;div data-dojo-type=&quot;dojox/mobile/ScrollableView&quot;&gt;
+        &lt;h1 data-dojo-type=&quot;dojox/mobile/Heading&quot; data-dojo-props=&quot;fixed: 'top'&quot;&gt;Long list (declarative)&lt;/h1&gt;
+        &lt;ul id=&quot;list&quot; data-dojo-type=&quot;dojox/mobile/RoundRectList&quot;
+                data-dojo-mixins=&quot;dojox/mobile/LongListMixin&quot;&gt;
+        &lt;/ul&gt;
+&lt;/div&gt;</textarea></div></div></div></div>
+<div class="section" id="programmatic-example-edgetoedgestorelist-with-longlistmixin">
+<h3>Programmatic example: EdgeToEdgeStoreList with LongListMixin<a class="headerlink" href="#programmatic-example-edgetoedgestorelist-with-longlistmixin" title="Permalink to this headline">¶</a></h3>
+<p>The following example shows a
+<a class="reference internal" href="EdgeToEdgeStoreList.html#dojox-mobile-edgetoedgestorelist"><em>dojox/mobile/EdgeToEdgeStoreList</em></a>
+(backed by a dojo/store) created programmatically and using <tt class="docutils literal"><span class="pre">LongListMixin</span></tt>.
+The store contains 1000 items but no more than 100 items will actually be added to the DOM.</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'inline', pluginArgs:{ dojoConfig: 'async: true, parseOnLoad: true', version:'1.9' }, width:'600', height:'400', toolbar:'', themename:'deviceTheme'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+        <span class="s2">&quot;dojo/_base/declare&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojo/ready&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dijit/registry&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojo/store/Memory&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/EdgeToEdgeStoreList&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/LongListMixin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/SearchBox&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/ScrollableView&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dojox/mobile/compat&quot;</span><span class="p">,</span> <span class="c1">// For non-webkit browsers (FF, IE)</span>
+        <span class="s2">&quot;dojox/mobile/parser&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">declare</span><span class="p">,</span> <span class="nx">ready</span><span class="p">,</span> <span class="nx">registry</span><span class="p">,</span> <span class="nx">Memory</span><span class="p">,</span> <span class="nx">EdgeToEdgeStoreList</span><span class="p">,</span> <span class="nx">LongListMixin</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+                <span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;Item &quot;</span><span class="o">+</span><span class="nx">i</span> <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="kd">var</span> <span class="nx">static_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">items</span><span class="o">:</span> <span class="nx">items</span>
+        <span class="p">};</span>
+        <span class="c1">// store for the dojox/mobile/EdgeToEdgeStoreList</span>
+        <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memory</span><span class="p">({</span><span class="nx">idProperty</span><span class="o">:</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="nx">data</span><span class="o">:</span> <span class="nx">static_data</span><span class="p">});</span>
+        <span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+                <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="nx">registry</span><span class="p">.</span><span class="nx">byId</span><span class="p">(</span><span class="s2">&quot;scrollableView&quot;</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">listWidget</span> <span class="o">=</span>
+                        <span class="k">new</span> <span class="nx">declare</span><span class="p">([</span><span class="nx">EdgeToEdgeStoreList</span><span class="p">,</span> <span class="nx">LongListMixin</span><span class="p">])(</span>
+                                <span class="p">{</span><span class="nx">store</span><span class="o">:</span> <span class="nx">store</span><span class="p">});</span>
+                <span class="nx">listWidget</span><span class="p">.</span><span class="nx">placeAt</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nx">containerNode</span><span class="p">);</span>
+                <span class="nx">listWidget</span><span class="p">.</span><span class="nx">startup</span><span class="p">();</span>
+        <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+        &quot;dojo/_base/declare&quot;,
+        &quot;dojo/ready&quot;,
+        &quot;dijit/registry&quot;,
+        &quot;dojo/store/Memory&quot;,
+        &quot;dojox/mobile/EdgeToEdgeStoreList&quot;,
+        &quot;dojox/mobile/LongListMixin&quot;,
+        &quot;dojox/mobile/SearchBox&quot;,
+        &quot;dojox/mobile/ScrollableView&quot;,
+        &quot;dojox/mobile&quot;,
+        &quot;dojox/mobile/compat&quot;, // For non-webkit browsers (FF, IE)
+        &quot;dojox/mobile/parser&quot;
+], function(declare, ready, registry, Memory, EdgeToEdgeStoreList, LongListMixin){
+        var items = [];
+        for(var i = 0; i &lt; 1000; i++){
+                items.push({ label: &quot;Item &quot;+i });
+        }
+        var static_data = {
+                items: items
+        };
+        // store for the dojox/mobile/EdgeToEdgeStoreList
+        var store = new Memory({idProperty:&quot;label&quot;, data: static_data});
+        ready(function(){
+                var view = registry.byId(&quot;scrollableView&quot;);
+                var listWidget =
+                        new declare([EdgeToEdgeStoreList, LongListMixin])(
+                                {store: store});
+                listWidget.placeAt(view.containerNode);
+                listWidget.startup();
+        });
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/View&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/Heading&quot;</span> <span class="na">data-dojo-props=</span><span class="s">&quot;fixed: &#39;top&#39;&quot;</span><span class="nt">&gt;</span>Long list (programmatic)<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;scrollableView&quot;</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/ScrollableView&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;div data-dojo-type=&quot;dojox/mobile/View&quot;&gt;
+        &lt;h1 data-dojo-type=&quot;dojox/mobile/Heading&quot; data-dojo-props=&quot;fixed: 'top'&quot;&gt;Long list (programmatic)&lt;/h1&gt;
+        &lt;div id=&quot;scrollableView&quot; data-dojo-type=&quot;dojox/mobile/ScrollableView&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</textarea></div></div></div></div>
+</div>
+<div class="section" id="see-also">
+<h2><a class="toc-backref" href="#id6">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p>An example showing the performance benefit of using <tt class="docutils literal"><span class="pre">LongListMixin</span></tt>
+is provided in <tt class="docutils literal"><span class="pre">dojox/mobile/tests/test_LongListMixin.html</span></tt>.</p>
+</div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../../index.html">Startpage</a></li>
+                            <li><a href="../../dojo/index.html">Dojo</a></li>
+                            <li><a href="../../dijit/index.html">Dijit</a></li>
+                            <li><a href="../index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">dojox/mobile/LongListMixin</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
+<li><a class="reference internal" href="#methods">Methods</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#declarative-example-roundrectlist-with-longlistmixin">Declarative example: RoundRectList with LongListMixin</a></li>
+<li><a class="reference internal" href="#programmatic-example-edgetoedgestorelist-with-longlistmixin">Programmatic example: EdgeToEdgeStoreList with LongListMixin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ListItem.html"
+                        title="previous chapter">dojox/mobile/ListItem</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Opener.html"
+                        title="next chapter">dojox/mobile/Opener</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

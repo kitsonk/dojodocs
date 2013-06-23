@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dojo/store/JsonRest &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../../index.html" />
+    <link rel="up" title="Dojo" href="../contents.html" />
+    <link rel="next" title="dojo/store/Memory" href="Memory.html" />
+    <link rel="prev" title="dojo/store/DataStore" href="DataStore.html" />
+
+    <link rel="stylesheet" href="../../_static/css/site.css">
+    <link rel="stylesheet" href="../../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojo-store-jsonrest">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2">dojo/store/JsonRest</a><a class="headerlink" href="#dojo-store-jsonrest" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Kris Zyp, Colin Snover</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Project owner:</th><td class="field-body">Kris Zyp</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">since:</th><td class="field-body">V1.6</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#dojo-store-jsonrest" id="id2">dojo/store/JsonRest</a><ul>
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#usage" id="id4">Usage</a></li>
+<li><a class="reference internal" href="#implementing-a-rest-server" id="id5">Implementing a REST Server</a><ul>
+<li><a class="reference internal" href="#method-and-restful-mapping" id="id6">Method and RESTful Mapping</a></li>
+<li><a class="reference internal" href="#paging" id="id7">Paging</a></li>
+<li><a class="reference internal" href="#sorting" id="id8">Sorting</a></li>
+<li><a class="reference internal" href="#headers" id="id9">Headers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notes" id="id10">Notes</a></li>
+<li><a class="reference internal" href="#see-also" id="id11">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><strong>dojo/store/JsonRest</strong> is a lightweight object store implementation of an HTTP-based (RFC 2616) client with RESTful
+data interaction capabilities. This store implements the <a class="reference internal" href="../store.html#dojo-store"><em>dojo/store</em></a>.</p>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">dojo/store/JsonRest</span></tt> provides full read, write, and notification capabilities through standards based HTTP/REST
+interaction with the server using GET, PUT, POST, and DELETE commands. This data store allows you to communicate with
+server side database/persistent data storage using the Dojo Store API with JavaScript and efficiently handles create,
+read, update, and delete (CRUD) operations. This can greatly simplify client server communication, interacting can be
+done simply using straightforward JavaScript instead of having to build your communication for CRUD actions.</p>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id4">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To utilize the module, require in the module, create a new instance, pointing it at your RESTful service, and then
+perform your operations:</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">&quot;dojo/store/JsonRest&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">JsonRest</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JsonRest</span><span class="p">({</span>
+    <span class="nx">target</span><span class="o">:</span> <span class="s2">&quot;/some/resource&quot;</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Get an object by identity</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
+    <span class="c1">// item will be the DB item</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Query for objects with options</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;foo=bar&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">start</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nx">count</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nx">sort</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">attribute</span><span class="o">:</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="nx">descending</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
+    <span class="c1">// results should contain up to 10 items, sorted by &quot;baz&quot; in descending fashion</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Store an object identified by identity</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">put</span><span class="p">({</span>
+    <span class="nx">foo</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="mi">3</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Remove an object by ID</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([&quot;dojo/store/JsonRest&quot;], function(JsonRest){
+  var store = new JsonRest({
+    target: &quot;/some/resource&quot;
+  });
+
+  // Get an object by identity
+  store.get(id).then(function(item){
+    // item will be the DB item
+  });
+
+  // Query for objects with options
+  store.query(&quot;foo=bar&quot;, {
+    start: 10,
+    count: 10,
+    sort: [
+      { attribute: &quot;baz&quot;, descending: true }
+    ]
+  }).then(function(results){
+    // results should contain up to 10 items, sorted by &quot;baz&quot; in descending fashion
+  });
+
+  // Store an object identified by identity
+  store.put({
+    foo: &quot;bar&quot;
+  }, {
+    id: 3
+  });
+
+  // Remove an object by ID
+  store.remove(3);
+});</textarea></div><p><tt class="docutils literal"><span class="pre">dojo/store/JsonRest</span></tt> impliments the following standard Store API methods:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>get(id)</td>
+<td>Retrieves an object by its identifier, returning the object.</td>
+</tr>
+<tr class="row-odd"><td>query(query, <em>options</em>)</td>
+<td><p class="first">Queries the store using the provided query.</p>
+<p>The returned value should be an array or a promise with <tt class="docutils literal"><span class="pre">forEach()</span></tt>
+, <tt class="docutils literal"><span class="pre">map()</span></tt>, <tt class="docutils literal"><span class="pre">filter()</span></tt>, <tt class="docutils literal"><span class="pre">reduce()</span></tt>, <tt class="docutils literal"><span class="pre">subscribe()</span></tt>, and
+optional <tt class="docutils literal"><span class="pre">close()</span></tt> and <tt class="docutils literal"><span class="pre">watch()</span></tt> methods, and a <tt class="docutils literal"><span class="pre">total</span></tt>
+property (the <tt class="docutils literal"><span class="pre">total</span></tt> may be a promise). The <tt class="docutils literal"><span class="pre">options</span></tt> parameter
+may include the following properties (all are optional):</p>
+<ul class="last">
+<li><p class="first"><tt class="docutils literal"><span class="pre">start</span></tt> - Starting offset</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">count</span></tt> - Number of objects to return</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">sort</span></tt> - This is an array of sort definitions, where each
+definition contains an <tt class="docutils literal"><span class="pre">attribute</span></tt> property indicating which
+property to sort on and a <tt class="docutils literal"><span class="pre">descending</span></tt> property indicating the
+direction of sort.</p>
+<p>For example: <tt class="docutils literal"><span class="pre">[{attribute:&quot;price,</span> <span class="pre">descending:</span> <span class="pre">true}]</span></tt>. If the
+sort parameter is omitted, then the natural order of the store may
+be applied if there is a natural order.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>put(object, <em>options</em>)</td>
+<td><p class="first">Saves the given object. The (optional) <tt class="docutils literal"><span class="pre">options</span></tt> argument may be
+an object with the following properties (each of these is optional
+and advisory, stores are not required to implement or respond to
+each property):</p>
+<ul class="last simple">
+<li><tt class="docutils literal"><span class="pre">id</span></tt> - Indicates the identity of the object if a new object is
+created.</li>
+<li><tt class="docutils literal"><span class="pre">before</span></tt> - If the collection of objects in the store has a
+natural ordering, this indicates that the created or updated
+object should be placed before the object specified by the value
+of this property. A value of null indicates that the object should
+be last.</li>
+<li><tt class="docutils literal"><span class="pre">parent</span></tt> - If the store is hierarchical (with single parenting)
+this property indicates the new parent of the created or updated
+object.</li>
+<li><tt class="docutils literal"><span class="pre">overwrite</span></tt> - If this is provided as a boolean it indicates that
+the object should or should not overwrite an existing object. A
+value of <tt class="docutils literal"><span class="pre">true</span></tt> indicates that a new object should not be
+created, the operation should update an existing object. A value
+of <tt class="docutils literal"><span class="pre">false</span></tt> indicates that an existing object should not be
+updated, a new object should be created (which is the same as an
+<tt class="docutils literal"><span class="pre">add()</span></tt> operation). When this property is not provided, either
+an update or creation is acceptable.</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>add(object, <em>options</em>)</td>
+<td>Create a new object. The (optional) <tt class="docutils literal"><span class="pre">options</span></tt> argument is defined
+the same as <tt class="docutils literal"><span class="pre">put()</span></tt> (except <tt class="docutils literal"><span class="pre">overwrite</span></tt> is assumed to be
+<tt class="docutils literal"><span class="pre">false</span></tt>).</td>
+</tr>
+<tr class="row-even"><td>remove(id)</td>
+<td>Delete the object by <tt class="docutils literal"><span class="pre">id</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td>getIdentity(object)</td>
+<td>Returns an <tt class="docutils literal"><span class="pre">object</span></tt>&#8216;s identity</td>
+</tr>
+</tbody>
+</table>
+<p>It also has the following properties:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="5%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>headers</td>
+<td>Object</td>
+<td>Additional headers to pass in all requests to the server. These can be overridden by passing
+additional headers to calls to the store.</td>
+</tr>
+<tr class="row-odd"><td>target</td>
+<td>String</td>
+<td>The target base URL to use for all requests to the server. This string will be prepended to the
+<tt class="docutils literal"><span class="pre">id</span></tt> to generate the URL (relative or absolute) for requests sent to the server.</td>
+</tr>
+<tr class="row-even"><td>idProperty</td>
+<td>String</td>
+<td>Indicates the property to use as the identity property. The values of this property should be
+unique.</td>
+</tr>
+<tr class="row-odd"><td>sortParam</td>
+<td>String</td>
+<td>The query parameter to be used for holding sort information. If this is omitted, then the sort
+information is included in a functional query token to avoid colliding with the set of name/value
+pairs.</td>
+</tr>
+<tr class="row-even"><td>accepts</td>
+<td>String</td>
+<td>Defines the Accept header to use on HTTP requests</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="implementing-a-rest-server">
+<h2><a class="toc-backref" href="#id5">Implementing a REST Server</a><a class="headerlink" href="#implementing-a-rest-server" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">dojo/store/JsonRest</span></tt> follows <a class="reference external" href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a> whenever possible to define the
+interaction with the server. It uses an HTTP GET request to retrieve data, a PUT or POST request to change items, a
+DELETE request to delete items, and a POST or PUT request to create new items. It is recommended that the server
+follow a URL structure for resources as follows:</p>
+<div class="highlight-python"><pre>/{Table}/{id}</pre>
+</div>
+<p>This URL will be used to retrieve items by identity and make modifications (PUT and DELETE). It is also recommended
+that a <tt class="docutils literal"><span class="pre">/{Table}/</span></tt> URL is used to represent the entire collection of items for the store. When a query is performed,
+any query string is appended to the target URL to retrieve the results of the query. The store expects the results to
+be returned in an array. The store will also POST to that URL to create new items.</p>
+<div class="section" id="method-and-restful-mapping">
+<h3><a class="toc-backref" href="#id6">Method and RESTful Mapping</a><a class="headerlink" href="#method-and-restful-mapping" title="Permalink to this headline">¶</a></h3>
+<p>With <tt class="docutils literal"><span class="pre">dojo/store/JsonRest</span></tt> the methods map logically to the appropriate HTTP verbs:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Result</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">get(id)</span></tt></td>
+<td>This will trigger a GET request to <tt class="docutils literal"><span class="pre">{target}/{id}</span></tt>.  The service shoud return a JSON
+object if the id exists or <tt class="docutils literal"><span class="pre">404</span></tt> if it does not.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">query(query,</span> <span class="pre">options)</span></tt></td>
+<td>This will trigger a GET request to <tt class="docutils literal"><span class="pre">{target}?{query}</span></tt>. If <tt class="docutils literal"><span class="pre">query</span></tt> is an object, it will
+be serialized using <a class="reference internal" href="../io-query.html#dojo-io-query-objecttoquery"><em>dojo/io-query::objectToQuery()</em></a>. If
+<tt class="docutils literal"><span class="pre">query</span></tt> is a string, it is appended to the URL as-is. If <tt class="docutils literal"><span class="pre">options</span></tt> includes a <tt class="docutils literal"><span class="pre">sort</span></tt>
+property, it will be serialized as a query parameter as well; see <a class="reference internal" href="#sorting">Sorting</a> for more
+information.  The service should return a JSON array of objects.  If no matches are found,
+it should return an empty array.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">remove(id)</span></tt></td>
+<td>This will trigger a DELETE request to <tt class="docutils literal"><span class="pre">{target}/{id}</span></tt>.  The service should repsond with a
+<tt class="docutils literal"><span class="pre">204</span></tt> if successful, a <tt class="docutils literal"><span class="pre">404</span></tt> if not found or another appropriate HTTP status code.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">put(object,</span> <span class="pre">options)</span></tt></td>
+<td>If object includes an identity property, or <tt class="docutils literal"><span class="pre">options</span></tt> includes an <tt class="docutils literal"><span class="pre">id</span></tt>, this will
+trigger a PUT request to <tt class="docutils literal"><span class="pre">{target}/{id}</span></tt> with the request body being the provided object
+serialized as JSON. If no identity is provided, then a POST request is made to <tt class="docutils literal"><span class="pre">{target}</span></tt>
+with the object as the body. If the <tt class="docutils literal"><span class="pre">options.incremental</span></tt> property is <tt class="docutils literal"><span class="pre">true</span></tt>, then a
+POST request is made to <tt class="docutils literal"><span class="pre">{target}/{id}</span></tt> with the object as the body. You may also include
+an <tt class="docutils literal"><span class="pre">options.overwrite</span></tt> property. If <tt class="docutils literal"><span class="pre">options.overwrite</span></tt> is set to <tt class="docutils literal"><span class="pre">true</span></tt>, then an <tt class="docutils literal"><span class="pre">If-</span>
+<span class="pre">Match:</span> <span class="pre">*</span></tt> header is included. If <tt class="docutils literal"><span class="pre">options.overwrite</span></tt> is set to <tt class="docutils literal"><span class="pre">false</span></tt>, then an <tt class="docutils literal"><span class="pre">If-</span>
+<span class="pre">None-Match:</span> <span class="pre">*</span></tt> header is included.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">add(object,</span> <span class="pre">options)</span></tt></td>
+<td>This behaves exactly like <tt class="docutils literal"><span class="pre">put(object,</span> <span class="pre">options)</span></tt>, except that <tt class="docutils literal"><span class="pre">options.overwrite</span></tt> is set
+to <tt class="docutils literal"><span class="pre">false</span></tt>, indicating that a new object must be created.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="paging">
+<h3><a class="toc-backref" href="#id7">Paging</a><a class="headerlink" href="#paging" title="Permalink to this headline">¶</a></h3>
+<p>The store uses HTTP's <tt class="docutils literal"><span class="pre">Range:</span></tt> header to perform paging. When a request is made for a range of items, the store will
+include a <tt class="docutils literal"><span class="pre">Range:</span></tt> header with an items range unit specifying the range.  For example:</p>
+<div class="highlight-python"><pre>Range: items=0-24</pre>
+</div>
+<p>On your server, you should look at the header in the request to know which items to return. The server should respond
+with a <tt class="docutils literal"><span class="pre">Content-Range:</span></tt> header to indicate how many items are being returned and how many total items exist.  For
+example:</p>
+<div class="highlight-python"><pre>Content-Range: items 0-24/66</pre>
+</div>
+<p>The returned <tt class="docutils literal"><span class="pre">total</span></tt> is available as a further promise on the returned promise of data which returns the total
+number of available rows indicated in the <tt class="docutils literal"><span class="pre">Content-Range:</span></tt> header as a number, so you can retrieve it like this:</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">&quot;dojo/store/JsonRest&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">JsonRest</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JsonRest</span><span class="p">({</span>
+    <span class="nx">target</span><span class="o">:</span> <span class="s2">&quot;/Table&quot;</span>
+  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;foo=bar&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="nx">results</span><span class="p">.</span><span class="nx">total</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">total</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;total results: &quot;</span><span class="p">,</span> <span class="nx">total</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;go on and use data &quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="s2">&quot; with this &quot;</span><span class="p">,</span> <span class="nx">self</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([&quot;dojo/store/JsonRest&quot;], function(JsonRest){
+  var store = new JsonRest({
+    target: &quot;/Table&quot;
+  });
+
+  var self = this;
+
+  var results = store.query(&quot;foo=bar&quot;).then(function(data){
+    results.total.then(function(total){
+      console.log(&quot;total results: &quot;, total);
+      console.log(&quot;go on and use data &quot;, data, &quot; with this &quot;, self);
+    });
+  });
+});</textarea></div></div>
+<div class="section" id="sorting">
+<h3><a class="toc-backref" href="#id8">Sorting</a><a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
+<p>When a query request is made that includes a <tt class="docutils literal"><span class="pre">sort</span></tt> option in the <tt class="docutils literal"><span class="pre">options</span></tt> object, an additional sort field is
+added to the query string. If the store’s <tt class="docutils literal"><span class="pre">sortParam</span></tt> property is set, it will use that value as the key for the
+field in the query string.</p>
+<p>For example, given the following store and request:</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">&quot;dojo/store/JsonRest&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">JsonRest</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JsonRest</span><span class="p">({</span>
+    <span class="nx">target</span><span class="o">:</span> <span class="s2">&quot;/FooObject/&quot;</span><span class="p">,</span>
+    <span class="nx">sortParam</span><span class="o">:</span> <span class="s2">&quot;sortBy&quot;</span>
+  <span class="p">});</span>
+
+  <span class="nx">store</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s2">&quot;value1&quot;</span> <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">sort</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">attribute</span><span class="o">:</span> <span class="s2">&quot;foo&quot;</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">attribute</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="nx">descending</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([&quot;dojo/store/JsonRest&quot;], function(JsonRest){
+
+  var store = new JsonRest({
+    target: &quot;/FooObject/&quot;,
+    sortParam: &quot;sortBy&quot;
+  });
+
+  store.query({ foo: &quot;value1&quot; }, {
+    sort: [
+      { attribute: &quot;foo&quot; },
+      { attribute: &quot;bar&quot;, descending: true }
+    ]
+  });
+});</textarea></div><p>The resulting request to the server would be:</p>
+<div class="highlight-python"><pre>/FooObject/?foo=value1&amp;sortBy=+foo,-bar</pre>
+</div>
+<p>If <tt class="docutils literal"><span class="pre">sortParam</span></tt> is not set, the sort value is appended without a key-value pair, surrounded by &quot;sort()&quot;:</p>
+<div class="highlight-python"><pre>/FooObject/?foo=value1&amp;sort(+foo,-bar)</pre>
+</div>
+</div>
+<div class="section" id="headers">
+<h3><a class="toc-backref" href="#id9">Headers</a><a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
+<p>Starting in Dojo 1.8, it is possible to send headers along with all requests made using the JsonRest store. This can
+either be done by setting the <tt class="docutils literal"><span class="pre">headers</span></tt> property of the store itself, in which case all requests will include the
+provided headers, or on a per-call basis by setting the <tt class="docutils literal"><span class="pre">headers</span></tt> property of the associated <tt class="docutils literal"><span class="pre">options</span></tt> object for
+calls to <tt class="docutils literal"><span class="pre">get</span></tt>, <tt class="docutils literal"><span class="pre">add</span></tt>, <tt class="docutils literal"><span class="pre">put</span></tt>, <tt class="docutils literal"><span class="pre">remove</span></tt>, or <tt class="docutils literal"><span class="pre">query</span></tt>.</p>
+<p>If header is provided on the <tt class="docutils literal"><span class="pre">options</span></tt> object passed to a call, it will override any similarly-named headers given
+directly on the store:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JsonRestStore</span><span class="p">({</span>
+  <span class="nx">target</span><span class="o">:</span> <span class="s2">&quot;/FooObject/&quot;</span><span class="p">,</span>
+  <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;X-Custom-Header&quot;</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span> <span class="p">}</span> <span class="c1">// All calls to server will include X-Custom-Header: Foo</span>
+<span class="p">});</span>
+
+<span class="nx">store</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="s2">&quot;value1&quot;</span> <span class="p">},</span> <span class="p">{</span>
+  <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;X-Custom-Header&quot;</span><span class="o">:</span> <span class="s2">&quot;Bar&quot;</span> <span class="p">}</span> <span class="c1">// This call will include X-Custom-Header: Bar instead</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">var store = new JsonRestStore({
+  target: &quot;/FooObject/&quot;,
+  headers: { &quot;X-Custom-Header&quot;: &quot;Foo&quot; } // All calls to server will include X-Custom-Header: Foo
+});
+
+store.query({ foo: &quot;value1&quot; }, {
+  headers: { &quot;X-Custom-Header&quot;: &quot;Bar&quot; } // This call will include X-Custom-Header: Bar instead
+});</textarea></div></div>
+</div>
+<div class="section" id="notes">
+<h2><a class="toc-backref" href="#id10">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p><em>Note</em>: <tt class="docutils literal"><span class="pre">dojo/store/JsonRest</span></tt> does not provide all the functionality of
+<a class="reference internal" href="../../dojox/data/JsonRestStore.html#dojox-data-jsonreststore"><em>dojox/data/JsonRestStore</em></a> itself. Additional modules and layers are used to provide
+schema validation, referencing, caching, and other functionality.  See <a class="reference internal" href="../store.html#dojo-store"><em>dojo/store</em></a> for the other
+modules that can be composed with this module to add these features.</p>
+</div>
+<div class="section" id="see-also">
+<h2><a class="toc-backref" href="#id11">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../store.html#dojo-store"><em>dojo/store</em></a> - The Dojo Store API.</li>
+<li><a class="reference internal" href="../data.html#dojo-data"><em>dojo/data</em></a> - The legacy Dojo Data Store API.</li>
+<li><a class="reference internal" href="../../dojox/data/JsonRestStore.html#dojox-data-jsonreststore"><em>dojox/data/JsonRestStore</em></a> - The deprecated JSON RESTful client store.</li>
+</ul>
+</div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../../index.html">Startpage</a></li>
+                            <li><a href="../index.html">Dojo</a></li>
+                            <li><a href="../../dijit/index.html">Dijit</a></li>
+                            <li><a href="../../dojox/index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">dojo/store/JsonRest</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#implementing-a-rest-server">Implementing a REST Server</a><ul>
+<li><a class="reference internal" href="#method-and-restful-mapping">Method and RESTful Mapping</a></li>
+<li><a class="reference internal" href="#paging">Paging</a></li>
+<li><a class="reference internal" href="#sorting">Sorting</a></li>
+<li><a class="reference internal" href="#headers">Headers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="DataStore.html"
+                        title="previous chapter">dojo/store/DataStore</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Memory.html"
+                        title="next chapter">dojo/store/Memory</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

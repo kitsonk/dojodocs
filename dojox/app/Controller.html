@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dojox/app/Controller &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../../index.html" />
+    <link rel="up" title="DojoX" href="../contents.html" />
+    <link rel="next" title="dojox/app/View" href="View.html" />
+    <link rel="prev" title="dojox/app" href="../app.html" />
+
+    <link rel="stylesheet" href="../../_static/css/site.css">
+    <link rel="stylesheet" href="../../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojox-app-controller">
+<span id="id1"></span><h1>dojox/app/Controller<a class="headerlink" href="#dojox-app-controller" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">since:</th><td class="field-body">V1.8</td>
+</tr>
+</tbody>
+</table>
+<p>The Controller module provides a base Class to control the application by binding events on application&#8217;s root domNode.
+Several controllers required by the framework are implemented in <tt class="docutils literal"><span class="pre">dojox/app/controllers</span></tt> package:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">dojox/app/controllers/Load</span></tt> controller: load view templates and view definitions</li>
+<li><tt class="docutils literal"><span class="pre">dojox/app/controllers/Transition</span></tt> controller: respond to &#8220;startTransition&#8221; event and do transition between views</li>
+<li><tt class="docutils literal"><span class="pre">dojox/app/controllers/Layout</span></tt> controller: perform views layout</li>
+<li><a class="reference internal" href="controllers/History.html#dojox-app-controllers-history"><em>dojox/app/controllers/History</em></a> controller: maintain application&#8217;s history. This is based on HTML5 history APIs and will not work on platforms that do not support it like IE, Android 3 &amp; 4, iOS4, etc.</li>
+<li><a class="reference internal" href="controllers/History.html#dojox-app-controllers-history"><em>dojox/app/controllers/HistoryHash</em></a> controller: maintain application&#8217;s history. This is based on URL hash and has limitation if refresh the browser and back to an URL which out of current application&#8217;s history stack.</li>
+</ul>
+<p>If the <tt class="docutils literal"><span class="pre">noAutoLoadControllers</span></tt> configuration option is set to false (or not set) the first three controllers are automatically loaded by the <tt class="docutils literal"><span class="pre">dojox/app/main</span></tt> module.
+If the <tt class="docutils literal"><span class="pre">noAutoLoadControllers</span></tt> configuration option is set to true, a Load, Transition, and Layout controller should be listed in the controllers section of the configuration file to be loaded.
+Any other controllers would always need to be listed in the controllers section of the configuration file to be loaded.</p>
+<p>A developer using the dojox/app framework can define additional custom controller by extending the base class (<tt class="docutils literal"><span class="pre">dojox/app/Controller</span></tt>)
+and specifying them in the application configuration file. The events binding to application&#8217;s root domNode is done by default.
+A developer can use Controller&#8217;s bind() method to bind event to document, window or <tt class="docutils literal"><span class="pre">dojo/Evented</span></tt> object if needed.</p>
+<div class="highlight"><pre><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;dojo/_base/lang&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/_base/declare&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">lang</span><span class="p">,</span> <span class="nx">declare</span><span class="p">){</span>
+
+      <span class="k">return</span> <span class="nx">declare</span><span class="p">(</span><span class="s2">&quot;myApp.myController&quot;</span><span class="p">,</span> <span class="nx">Controller</span><span class="p">,</span> <span class="p">{</span>
+
+              <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">events</span><span class="p">){</span>
+                      <span class="c1">// summary:</span>
+                      <span class="c1">//              bind &quot;myEvent1&quot; and &quot;myEvent2&quot; events on application&#39;s root domNode.</span>
+                      <span class="c1">//              bind &quot;resize&quot; event on window</span>
+                      <span class="c1">// app:</span>
+                      <span class="c1">//              dojox.app application instance.</span>
+                      <span class="c1">// events:</span>
+                      <span class="c1">//              {event : handler}</span>
+                      <span class="k">this</span><span class="p">.</span><span class="nx">events</span> <span class="o">=</span> <span class="p">{</span>
+                              <span class="s2">&quot;myEvent1&quot;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">myEvent1</span><span class="p">,</span>
+                              <span class="s2">&quot;myEvent2&quot;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">myEvent2</span>
+                      <span class="p">};</span>
+                      <span class="k">this</span><span class="p">.</span><span class="nx">inherited</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+
+                      <span class="c1">// bind &quot;resize&quot; event on window</span>
+                      <span class="k">this</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onResize</span><span class="p">);</span>
+              <span class="p">},</span>
+
+              <span class="nx">myEvent1</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                      <span class="c1">// add your code here</span>
+              <span class="p">},</span>
+
+              <span class="nx">myEvent2</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                      <span class="c1">// add your code here</span>
+              <span class="p">},</span>
+
+              <span class="nx">onResize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                      <span class="c1">// add your code here</span>
+              <span class="p">}</span>
+      <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">define([&quot;dojo/_base/lang&quot;, &quot;dojo/_base/declare&quot;], function(lang, declare){
+
+      return declare(&quot;myApp.myController&quot;, Controller, {
+
+              constructor: function(app, events){
+                      // summary:
+                      //              bind &quot;myEvent1&quot; and &quot;myEvent2&quot; events on application's root domNode.
+                      //              bind &quot;resize&quot; event on window
+                      // app:
+                      //              dojox.app application instance.
+                      // events:
+                      //              {event : handler}
+                      this.events = {
+                              &quot;myEvent1&quot;: this.myEvent1,
+                              &quot;myEvent2&quot;: this.myEvent2
+                      };
+                      this.inherited(arguments);
+
+                      // bind &quot;resize&quot; event on window
+                      this.bind(window, &quot;resize&quot;, this.onResize);
+              },
+
+              myEvent1: function(){
+                      // add your code here
+              },
+
+              myEvent2: function(){
+                      // add your code here
+              },
+
+              onResize: function(){
+                      // add your code here
+              }
+      });
+});</textarea></div></div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../../index.html">Startpage</a></li>
+                            <li><a href="../../dojo/index.html">Dojo</a></li>
+                            <li><a href="../../dijit/index.html">Dijit</a></li>
+                            <li><a href="../index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../app.html"
+                        title="previous chapter">dojox/app</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="View.html"
+                        title="next chapter">dojox/app/View</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

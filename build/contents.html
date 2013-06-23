@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dojo Build &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../index.html" />
+    <link rel="next" title="build system build script (build.sh or build.bat)" href="buildScript.html" />
+    <link rel="prev" title="Dojo API Documentation Tools" href="../util/doctools.html" />
+
+    <link rel="stylesheet" href="../_static/css/site.css">
+    <link rel="stylesheet" href="../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojo-build">
+<h1>Dojo Build<a class="headerlink" href="#dojo-build" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="buildScript.html">build system build script (build.sh or build.bat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="buildSystem.html">The Dojo Build System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customBase.html">build customBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="directoryLayout.html">Sample Directory Layout for Builds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exclude.html">Dojo build system:  conditional exclusions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expand-provide.html">Expanding dojo.provide calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">The Dojo Build System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keepRequires.html">Dojo build system:  keepRequires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="localizationExample.html">Localized Build Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/100.html">100 - legacyAssumed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/101.html">101 - legacyUsingLoadInitPlug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/102.html">102 - optimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/103.html">103 - optimizeDone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/104.html">104 - optimizeMessages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/105.html">105 - pacify</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/106.html">106 - cssOptimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/107.html">107 - packageVersion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/108.html">108 - internStrings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/109.html">109 - processHtmlFiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/110.html">110 - userInfo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/200.html">200 - configUnresolvedValues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/201.html">201 - amdCircularDependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/202.html">202 - amdInconsistentMid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/203.html">203 - amdPureContainedLegacyApi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/205.html">205 - amdNotPureContainedNoLegacyApi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/206.html">206 - legacyMultipleProvides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/207.html">207 - legacyImproperProvide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/208.html">208 - inputDeprecatedProfileFile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/209.html">209 - missingPackageJson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/210.html">210 - inputDeprecatedStripConsole</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/211.html">211 - inputDeprecated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/212.html">212 - oddDojoPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/213.html">213 - buildUsingDifferentDojo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/214.html">214 - ignoringReleaseDirName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/215.html">215 - inputLoggerRemoved</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/216.html">216 - dojoHasUnresolvedMid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/217.html">217 - cleanRemoved</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/218.html">218 - inputProfileFileDeprecated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/219.html">219 - userWarn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/220.html">220 - outputToProfileFileDeprecated</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/221.html">221 - assumeLayerIsDojoModule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/222.html">222 - assumeLayerDependencyIsDojoModule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/223.html">223 - possibleLegacyModuleId</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/224.html">224 - missingPluginResolver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/225.html">225 - missingDirDuringDiscovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/226.html">226 - missingProfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/300.html">300 - dojoHasMissingPlugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/302.html">302 - dojoHasMissingMid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/303.html">303 - amdMissingLayerIncludeModule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/304.html">304 - amdMissingLayerExcludeModule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/305.html">305 - amdMissingLayerModuleText</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/306.html">306 - legacyFailedEval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/307.html">307 - amdFailedEval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/308.html">308 - amdFailedDefineEval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/309.html">309 - i18nNoRoot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/310.html">310 - i18nImproperBundle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/311.html">311 - amdMissingDependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/312.html">312 - optimizeFailedWrite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/313.html">313 - cssOptimizeFailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/314.html">314 - execFailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/315.html">315 - inputInvalidPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/316.html">316 - inputUnknownAction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/317.html">317 - inputUnknownStripConsole</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/318.html">318 - inputUnknownLayerOptimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/319.html">319 - inputUnknownOptimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/320.html">320 - inputUnknownTransform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/321.html">321 - inputUnknownGate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/322.html">322 - inputNoLoaderForBoot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/323.html">323 - failedReadAndEval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/324.html">324 - transformFailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/325.html">325 - discoveryFailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/326.html">326 - overwrite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/327.html">327 - outputCollide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/328.html">328 - noTransform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/329.html">329 - layerToMidFailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/330.html">330 - layerMissingDependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/331.html">331 - getDependencyListRemoved</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/332.html">332 - invalidMessageId</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/333.html">333 - legacyMissingDependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/334.html">334 - amdCannotInstantiateLayer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/335.html">335 - dojoPragmaEvalFail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/336.html">336 - dojoPragmaInvalid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/337.html">337 - inputMalformedPackageJson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/338.html">338 - inputProfileDoesNotExist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/339.html">339 - inputProfileFileDoesNotExist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/340.html">340 - inputHTMLFileDoesNotExist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/341.html">341 - inputHTMLDirDoesNotExist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/342.html">342 - inputHTMLDirNoFiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/343.html">343 - inputIllegalCommandlineArg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/344.html">344 - inputFileDoesNotExist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/345.html">345 - inputProcessingHtmlFileNotImplemented</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/346.html">346 - inputFailedReadfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/347.html">347 - inputFailedToEvalProfile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/348.html">348 - userError</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/349.html">349 - missingPrefix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/350.html">350 - cannotDeduceModuleIdFrom16LayerName</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/351.html">351 - cannotDeduceModuleIdFrom16LayerDependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/352.html">352 - failedToReadLayerCopyrightFile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/353.html">353 - i18nUnevaluableBundle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/354.html">354 - missingL10n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/355.html">355 - declarativeRequireFailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/400.html">400 - hasReport</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/499.html">499 - signoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messages/template.html">%msg_no% - %msg_msg%</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pre17/build.html">Dojo Build System (Pre 1.7)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profileQRef.html">Quick Reference of all Profile Properties for Optimization Build Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiles.html">Build profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html">Quick Reference for Optimization Build Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#reference-documentation">Reference Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#command-line-switch-reference">Command Line Switch Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#discovery-profile-properties">Discovery Profile Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-copy">Transform: copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-depsdump">Transform: depsDump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-depsscan">Transform: depsScan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-dojopragmas">Transform: dojoPragmas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-dojoreport">Transform: dojoReport</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-hasfindall">Transform: hasFindAll</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-hasfixup">Transform: hasFixup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-insertsymbols">Transform: insertSymbols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-optimizecss">Transform: optimizeCss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-read">Transform: read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-write">Transform: write</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-writeamd">Transform: writeAmd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-writedojo">Transform: writeDojo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#transform-writeoptimized">Transform: writeOptimized</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#deprecated-profile-properties">Deprecated Profile Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qref.html#removed-profile-properties">Removed Profile Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenario-base.html">Building a Base-only dojo.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenario-micro.html">A CustomBase Dojo Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenario-release.html">Building a standard release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenario-xDomain.html">Building an x-domain Dojo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simpleExample.html">Simple Buildsystem Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/copy.html">Build Transform copy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/depsDeclarative.html">depsDeclarative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/depsDump.html">Build Transform depsDump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/depsScan.html">Build Transform depsScan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/dojoPragmas.html">Build Transform dojoPragmas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/dojoReport.html">Build Transform dojoReport</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/hasFindAll.html">Build Transform hasFindAll</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/hasFixup.html">Build Transform hasFixup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/hasReport.html">Build Transform hasReport</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/insertSymbols.html">Build Transform insertSymbols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/optimizeCss.html">Build Transform optimizeCss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/read.html">Build Transform read</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/write.html">Build Transform write</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/writeAmd.html">Build Transform writeAmd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/writeDojo.html">Build Transform writeDojo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transforms/writeOptimized.html">Build Transform writeOptimized</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webkit-mobile.html">Special Dojo Build: WebKit Mobile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xDomain.html">Build System:  Cross-Domain (xDomain) Builds</a></li>
+</ul>
+</div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../index.html">Startpage</a></li>
+                            <li><a href="../dojo/index.html">Dojo</a></li>
+                            <li><a href="../dijit/index.html">Dijit</a></li>
+                            <li><a href="../dojox/index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../util/doctools.html"
+                        title="previous chapter">Dojo API Documentation Tools</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="buildScript.html"
+                        title="next chapter">build system build script (build.sh or build.bat)</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

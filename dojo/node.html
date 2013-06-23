@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dojo/node &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../index.html" />
+    <link rel="up" title="Dojo" href="contents.html" />
+    <link rel="next" title="dojo/number" href="number.html" />
+    <link rel="prev" title="dojo/mouse" href="mouse.html" />
+
+    <link rel="stylesheet" href="../_static/css/site.css">
+    <link rel="stylesheet" href="../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojo-node">
+<span id="id1"></span><h1>dojo/node<a class="headerlink" href="#dojo-node" title="Permalink to this headline">¶</a></h1>
+<p><strong>dojo/node</strong> is a loader plugin that is used to load &#8220;native&#8221; <a class="reference external" href="http://nodejs.org/">node.js</a> modules when using the Dojo loader.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">dojo/node</span></tt> simply accesses the native <tt class="docutils literal"><span class="pre">require()</span></tt> function of node, passing the plugin argument as the parameter.  The plugin will attempt to resolve the requirement in the same way the node.js require would normally operate (e.g. looking in the current path, looking in <tt class="docutils literal"><span class="pre">node_modules</span></tt>, etc.).  The plugin works for both node internal modules as well as external ones.</p>
+<p>This allows you to write all of your code in an AMD style, but utilize node modules seamlessly in your code.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Require the plugin and pass the module name as the plugin argument string.  Paths will be relative to the path of the current path when <tt class="docutils literal"><span class="pre">dojo/dojo</span></tt> was loaded.</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">&quot;dojo/node!util&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">){</span>
+  <span class="c1">// Module available as util</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([&quot;dojo/node!util&quot;], function(util){
+  // Module available as util
+});</textarea></div></div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following example would bootstrap Dojo and then load the internal node.js modules <tt class="docutils literal"><span class="pre">util</span></tt> and <tt class="docutils literal"><span class="pre">fs</span></tt>.</p>
+<p>In <tt class="docutils literal"><span class="pre">bootstrap.js</span></tt>:</p>
+<div class="highlight"><pre><span class="nx">dojoConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">async</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">basePath</span><span class="o">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+  <span class="nx">packages</span><span class="o">:</span> <span class="p">[{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;dojo&quot;</span><span class="p">,</span>
+    <span class="nx">location</span><span class="o">:</span> <span class="s2">&quot;lib/dojo&quot;</span>
+  <span class="p">},{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;dijit&quot;</span><span class="p">,</span>
+    <span class="nx">location</span><span class="o">:</span> <span class="s2">&quot;lib/dijit&quot;</span>
+  <span class="p">},{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;dojox&quot;</span><span class="p">,</span>
+    <span class="nx">location</span><span class="o">:</span> <span class="s2">&quot;lib/dojox&quot;</span>
+  <span class="p">},{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;app&quot;</span><span class="p">,</span>
+    <span class="nx">location</span><span class="o">:</span> <span class="s2">&quot;lib/app&quot;</span>
+  <span class="p">}],</span>
+  <span class="nx">deps</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;app/src&quot;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./lib/dojo/dojo.js&quot;</span><span class="p">);</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">dojoConfig = {
+  async: true,
+  basePath: &quot;.&quot;,
+  packages: [{
+    name: &quot;dojo&quot;,
+    location: &quot;lib/dojo&quot;
+  },{
+    name: &quot;dijit&quot;,
+    location: &quot;lib/dijit&quot;
+  },{
+    name: &quot;dojox&quot;,
+    location: &quot;lib/dojox&quot;
+  },{
+    name: &quot;app&quot;,
+    location: &quot;lib/app&quot;
+  }],
+  deps: [&quot;app/src&quot;]
+};
+
+require(&quot;./lib/dojo/dojo.js&quot;);</textarea></div><p>In <tt class="docutils literal"><span class="pre">lib/app/src.js</span></tt>:</p>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">&quot;dojo/node!util&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/node!fs&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">,</span> <span class="nx">fs</span><span class="p">){</span>
+  <span class="nx">util</span><span class="p">.</span><span class="nx">puts</span><span class="p">(</span><span class="s2">&quot;I loaded!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([&quot;dojo/node!util&quot;, &quot;dojo/node!fs&quot;], function(util, fs){
+  util.puts(&quot;I loaded!&quot;);
+});</textarea></div></div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../loader/index.html#loader-index"><em>Dojo&#8217;s Loader</em></a></li>
+<li><a class="reference external" href="http://nodejs.org/">node.js</a></li>
+</ul>
+</div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../index.html">Startpage</a></li>
+                            <li><a href="index.html">Dojo</a></li>
+                            <li><a href="../dijit/index.html">Dijit</a></li>
+                            <li><a href="../dojox/index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">dojo/node</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mouse.html"
+                        title="previous chapter">dojo/mouse</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="number.html"
+                        title="next chapter">dojo/number</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dojox/mobile/Icon &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../../index.html" />
+    <link rel="up" title="DojoX" href="../contents.html" />
+    <link rel="next" title="dojox/mobile/IconContainer" href="IconContainer.html" />
+    <link rel="prev" title="dojox/mobile/Heading" href="Heading.html" />
+
+    <link rel="stylesheet" href="../../_static/css/site.css">
+    <link rel="stylesheet" href="../../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojox-mobile-icon">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2">dojox/mobile/Icon</a><a class="headerlink" href="#dojox-mobile-icon" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Yoshiroh Kamiyama</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Developers:</th><td class="field-body">Yoshiroh Kamiyama</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">since:</th><td class="field-body">V1.8</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#dojox-mobile-icon" id="id2">dojox/mobile/Icon</a><ul>
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#constructor-parameters" id="id4">Constructor Parameters</a></li>
+<li><a class="reference internal" href="#examples" id="id5">Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>dojox/mobile/Icon is a simple utility class for creating an image icon, a CSS sprite icon, or a DOM Button.
+It calls dojox/mobile/iconUtils.createIcon() with the appropriate parameters to create an icon.
+Note that this module is not a widget, that is it does not inherit from dijit/_WidgetBase.</p>
+<img alt="../../_images/Icon.png" src="../../_images/Icon.png" />
+</div>
+<div class="section" id="constructor-parameters">
+<h2><a class="toc-backref" href="#id4">Constructor Parameters</a><a class="headerlink" href="#constructor-parameters" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="7%" />
+<col width="6%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Parameter</td>
+<td>Type</td>
+<td>Default</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>icon</td>
+<td>String</td>
+<td>&#8220;&#8221;</td>
+<td>The icon to display. The value can be either a path for an image file or a class name of a DOM button.</td>
+</tr>
+<tr class="row-odd"><td>iconPos</td>
+<td>String</td>
+<td>&#8220;&#8221;</td>
+<td>The position of the aggregated icon. IconPos is a comma-separated list of values (top,left,width,height)
+(ex. &#8220;0,0,29,29&#8221;).</td>
+</tr>
+<tr class="row-even"><td>alt</td>
+<td>String</td>
+<td>&#8220;&#8221;</td>
+<td>The alt text for the icon image.</td>
+</tr>
+<tr class="row-odd"><td>tag</td>
+<td>String</td>
+<td>&#8220;div&#8221;</td>
+<td>The name of the HTML tag to create as this.domNode.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="declarative-example">
+<h3>Declarative example<a class="headerlink" href="#declarative-example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/Icon&quot;</span>
+     <span class="na">data-dojo-props=</span><span class="s">&#39;icon:&quot;images/tab-icon-23h.png&quot;&#39;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/Icon&quot;</span>
+     <span class="na">data-dojo-props=</span><span class="s">&#39;icon:&quot;images/tab-icons.png&quot;, iconPos:&quot;29,116,29,29&quot;&#39;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojox/mobile/Icon&quot;</span>
+     <span class="na">data-dojo-props=</span><span class="s">&#39;icon:&quot;mblDomButtonBlueCircleArrow&quot;&#39;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;div data-dojo-type=&quot;dojox/mobile/Icon&quot;
+     data-dojo-props='icon:&quot;images/tab-icon-23h.png&quot;'&gt;&lt;/div&gt;
+&lt;div data-dojo-type=&quot;dojox/mobile/Icon&quot;
+     data-dojo-props='icon:&quot;images/tab-icons.png&quot;, iconPos:&quot;29,116,29,29&quot;'&gt;&lt;/div&gt;
+&lt;div data-dojo-type=&quot;dojox/mobile/Icon&quot;
+     data-dojo-props='icon:&quot;mblDomButtonBlueCircleArrow&quot;'&gt;&lt;/div&gt;</textarea></div><img alt="../../_images/Icon-example1.png" src="../../_images/Icon-example1.png" />
+</div>
+<div class="section" id="programmatic-example">
+<h3>Programmatic example<a class="headerlink" href="#programmatic-example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+  <span class="s2">&quot;dojo/ready&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;dojox/mobile/Icon&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ready</span><span class="p">,</span> <span class="nx">Icon</span><span class="p">){</span>
+  <span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">icon1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Icon</span><span class="p">({</span><span class="nx">icon</span><span class="o">:</span><span class="s2">&quot;images/tab-icon-23h.png&quot;</span><span class="p">},</span>
+                          <span class="s2">&quot;icon1&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">icon2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Icon</span><span class="p">({</span><span class="nx">icon</span><span class="o">:</span><span class="s2">&quot;images/tab-icons.png&quot;</span><span class="p">,</span> <span class="nx">iconPos</span><span class="o">:</span><span class="s2">&quot;29,116,29,29&quot;</span><span class="p">},</span>
+                          <span class="s2">&quot;icon2&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">icon3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Icon</span><span class="p">({</span><span class="nx">icon</span><span class="o">:</span><span class="s2">&quot;mblDomButtonBlueCircleArrow&quot;</span><span class="p">},</span>
+                          <span class="s2">&quot;icon3&quot;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+  &quot;dojo/ready&quot;,
+  &quot;dojox/mobile/Icon&quot;
+], function(ready, Icon){
+  ready(function(){
+    var icon1 = new Icon({icon:&quot;images/tab-icon-23h.png&quot;},
+                          &quot;icon1&quot;);
+    var icon2 = new Icon({icon:&quot;images/tab-icons.png&quot;, iconPos:&quot;29,116,29,29&quot;},
+                          &quot;icon2&quot;);
+    var icon3 = new Icon({icon:&quot;mblDomButtonBlueCircleArrow&quot;},
+                          &quot;icon3&quot;);
+  });
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;icon1&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;icon2&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;icon3&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;div id=&quot;icon1&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;icon2&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;icon3&quot;&gt;&lt;/div&gt;</textarea></div><img alt="../../_images/Icon-example1.png" src="../../_images/Icon-example1.png" />
+</div>
+</div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../../index.html">Startpage</a></li>
+                            <li><a href="../../dojo/index.html">Dojo</a></li>
+                            <li><a href="../../dijit/index.html">Dijit</a></li>
+                            <li><a href="../index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">dojox/mobile/Icon</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#constructor-parameters">Constructor Parameters</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#declarative-example">Declarative example</a></li>
+<li><a class="reference internal" href="#programmatic-example">Programmatic example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Heading.html"
+                        title="previous chapter">dojox/mobile/Heading</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="IconContainer.html"
+                        title="next chapter">dojox/mobile/IconContainer</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

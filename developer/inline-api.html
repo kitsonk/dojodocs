@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Inlining API &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../index.html" />
+    <link rel="next" title="Dojo Inline Documentation" href="markup.html" />
+    <link rel="prev" title="Dojo Developer Notebook" href="index.html" />
+
+    <link rel="stylesheet" href="../_static/css/site.css">
+    <link rel="stylesheet" href="../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="inlining-api">
+<span id="developer-inline-api"></span><h1>Inlining API<a class="headerlink" href="#inlining-api" title="Permalink to this headline">¶</a></h1>
+<p>This document contains information on how to inline API documentation into the reference-guide.</p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Dojo API Documentation supports the ability to make remote procedure calls in order to retrieve a JSON
+representation of the API.  rstWiki, the tool that generates the reference-guide supports the ability to inline this
+documentation into the page using special directives.</p>
+<p>The format of the directives is as the following:</p>
+<div class="highlight-python"><pre>.. api-doc :: package/module
+  :level: 2
+  :table:
+  :topfunc:
+  :methods: foo bar
+  :properties: baz qux
+  :events: onCorge onGrault
+  :no-headers:
+  :no-inherited:
+  :extensions:
+  :privates:
+  :summary:
+  :description:
+  :returns:
+  :sig:</pre>
+</div>
+<p>Where the <tt class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc</span> <span class="pre">::</span></tt> is followed by the MID to be inlined (e.g. <tt class="docutils literal"><span class="pre">dojo/query</span></tt> or <tt class="docutils literal"><span class="pre">dijit/form/Button</span></tt>).  The
+following other options are available:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:level:</span></tt></td>
+<td>The header level that the at which the labels will be output at.  Defaults to <tt class="docutils literal"><span class="pre">2</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:table:</span></tt></td>
+<td>Information should be presented in a table format, with summary information provided.  If this is
+specified, <tt class="docutils literal"><span class="pre">:level</span></tt>, <tt class="docutils literal"><span class="pre">:description:</span></tt> and <tt class="docutils literal"><span class="pre">:sig:</span></tt> will be ignored.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:topfunc:</span></tt></td>
+<td>If specified, and the module returns a function, it will output the information for that root
+function.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:methods:</span></tt></td>
+<td>Output the methods for the specified module.  If this is followed by a space deliminated list, then
+only those methods will be output in the order supplied.  If there are none specified, all methods
+will be output, based on the <tt class="docutils literal"><span class="pre">:privates:</span></tt> argument.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:properties:</span></tt></td>
+<td>Output the properties for the specified module.  If this is followed by a space deliminated list,
+then only those properties will be output in the order supplied.  If there are none specified, all
+properties will be output, based on the <tt class="docutils literal"><span class="pre">:privates:</span></tt> argument.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:events:</span></tt></td>
+<td>Output the events for the specified module.  If this is followed by a space deliminated list, then
+only those events will be output in the order supplied.  If there are none specified, all events
+will be output, based on the <tt class="docutils literal"><span class="pre">:privates:</span></tt> argument.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:no-headers:</span></tt></td>
+<td>If not using tables, do not output a header for each method, property or event.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:no-inherited:</span></tt></td>
+<td>If outputting methods, properties or events, do not include those that are inherited.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:no-base:</span></tt></td>
+<td>If outputting methods, properties or events, do not include those that are declared within the
+class itself.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:extensions:</span></tt></td>
+<td>If outputting methods, properties or events, include those that</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:privates:</span></tt></td>
+<td>If outputting methods, properties or events, include those that are marked as private.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:summary:</span></tt></td>
+<td>Output the summary for each method, property or event.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:description:</span></tt></td>
+<td>Output the description for each method, property or event.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">:returns:</span></tt></td>
+<td>For methods, include information about the return value of the method.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">:sig:</span></tt></td>
+<td>For methods, include a table of arguments that form the signature of the method.</td>
+</tr>
+</tbody>
+</table>
+<p>The above directive is designed to potentially be used, with a different configuration, in different places in the
+document, especially since the directive will not output any headers between methods, properties or events.</p>
+<p>The following provides some &quot;live&quot; examples:</p>
+</div>
+<div class="section" id="dojo-on-root-function">
+<h2>dojo/on Root Function<a class="headerlink" href="#dojo-on-root-function" title="Permalink to this headline">¶</a></h2>
+<p>A function that provides core event listening functionality. With this function
+you can provide a target, event type, and listener to be notified of
+future matching events that are fired.</p><table class='docutils' border='1'><thead><tr><th class='head'>Name</th><th class='head'>Type</th><th class='head'>Description</th></tr></thead><tbody><tr><td>target</td><td class='required'>Element|Object</td><td><p>This is the target object or DOM element that to receive events from</p></td></tr><tr><td>type</td><td class='required'>String|Function</td><td><p>This is the name of the event to listen for or an extension event type.</p></td></tr><tr><td>listener</td><td class='required'>Function</td><td><p>This is the function that should be called when the event fires.</p></td></tr><tr><td>dontFix</td><td class='required'>undefined</td><td></td></tr></tbody></table><p><code>dojo/on()</code> returns <code>Object</code> or <code>undefined</code>.</p></div>
+<div class="section" id="dojo-stateful-methods">
+<h2>dojo/Stateful Methods<a class="headerlink" href="#dojo-stateful-methods" title="Permalink to this headline">¶</a></h2>
+<table class='docutils' border='1'><thead><tr><th class='head'>Method</th><th class='head'>Returns</th><th class='head'>Description</th></tr></thead><tbody><tr><td>get(<span class='required'>name</span>)</td><td>any|undefined</td><td><p>Get a property on a Stateful instance.</p></td></tr><tr><td>set(<span class='required'>name</span>,<span class='required'>value</span>)</td><td>any|function</td><td><p>Set a property on a Stateful instance</p></td></tr><tr><td>watch(<span class='optional'>name</span>,<span class='required'>callback</span>)</td><td>any|object</td><td><p>Watches a property for changes</p></td></tr></tbody></table></div>
+<div class="section" id="dijit-widgetbase-properties">
+<h2>dijit/_WidgetBase Properties<a class="headerlink" href="#dijit-widgetbase-properties" title="Permalink to this headline">¶</a></h2>
+<table class='docutils' border='1'><thead><tr><th class='head'>Property</th><th class='head'>Type</th><th class='head'>Description</th></tr></thead><tbody><tr><td>_attrPairNames</td><td>object</td><td></td></tr><tr><td>_blankGif</td><td>String</td><td><p>Path to a blank 1x1 image.
+Used by <code>&lt;img&gt;</code> nodes in templates that really get their image via CSS background-image.</p></td></tr><tr><td>_setClassAttr</td><td>object</td><td></td></tr><tr><td>_setDirAttr</td><td>undefined</td><td></td></tr><tr><td>_setIdAttr</td><td>string</td><td></td></tr><tr><td>_setLangAttr</td><td>undefined</td><td></td></tr><tr><td>_started</td><td>Boolean</td><td><p>startup() has completed.</p></td></tr><tr><td>attributeMap</td><td>Object</td><td><p>Deprecated. Instead of attributeMap, widget should have a _setXXXAttr attribute
+for each XXX attribute to be mapped to the DOM.
+
+</p>
+<p>attributeMap sets up a &quot;binding&quot; between attributes (aka properties)
+of the widget and the widget&#39;s DOM.
+Changes to widget attributes listed in attributeMap will be
+reflected into the DOM.
+
+</p>
+<p>For example, calling set(&#39;title&#39;, &#39;hello&#39;)
+on a TitlePane will automatically cause the TitlePane&#39;s DOM to update
+with the new title.
+
+</p>
+<p>attributeMap is a hash where the key is an attribute of the widget,
+and the value reflects a binding to a:
+
+</p>
+<ul>
+<li><p>DOM node attribute</p>
+<p>  focus: {node: &quot;focusNode&quot;, type: &quot;attribute&quot;}
+Maps this.focus to this.focusNode.focus</p>
+</li>
+</ul>
+<ul>
+<li><p>DOM node innerHTML</p>
+<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerHTML&quot; }
+Maps this.title to this.titleNode.innerHTML</p>
+</li>
+</ul>
+<ul>
+<li><p>DOM node innerText</p>
+<p>  title: { node: &quot;titleNode&quot;, type: &quot;innerText&quot; }
+Maps this.title to this.titleNode.innerText</p>
+</li>
+</ul>
+<ul>
+<li><p>DOM node CSS class</p>
+<p>  myClass: { node: &quot;domNode&quot;, type: &quot;class&quot; }
+Maps this.myClass to this.domNode.className</p>
+</li>
+</ul>
+<p>If the value is an array, then each element in the array matches one of the
+formats of the above list.
+
+</p>
+<p>There are also some shorthands for backwards compatibility:
+
+</p>
+<ul>
+<li>string --&gt; { node: string, type: &quot;attribute&quot; }, for example:</li>
+</ul>
+<pre><code>&quot;focusNode&quot; ---&gt; { node: &quot;focusNode&quot;, type: &quot;attribute&quot; }</code></pre>
+<ul>
+<li>&quot;&quot; --&gt; { node: &quot;domNode&quot;, type: &quot;attribute&quot; }</li>
+</ul></td></tr><tr><td>baseClass</td><td>String</td><td><p>Root CSS class of the widget (ex: dijitTextBox), used to construct CSS classes to indicate
+widget state.</p></td></tr><tr><td>class</td><td>string</td><td></td></tr><tr><td>containerNode</td><td>DomNode</td><td><p>Designates where children of the source DOM node will be placed.
+&quot;Children&quot; in this case refers to both DOM nodes and widgets.
+For example, for myWidget:
+
+
+</p>
+<pre><code>&lt;div data-dojo-type=myWidget&gt;
+    &lt;b&gt; here&#39;s a plain DOM node
+    &lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;
+    &lt;i&gt; and another plain DOM node &lt;/i&gt;
+&lt;/div&gt;</code></pre>
+<p>containerNode would point to:
+
+
+</p>
+<pre><code>&lt;b&gt; here&#39;s a plain DOM node
+&lt;span data-dojo-type=subWidget&gt;and a widget&lt;/span&gt;
+&lt;i&gt; and another plain DOM node &lt;/i&gt;</code></pre>
+<p>In templated widgets, &quot;containerNode&quot; is set via a
+data-dojo-attach-point assignment.
+
+</p>
+<p>containerNode must be defined for any widget that accepts innerHTML
+(like ContentPane or BorderContainer or even Button), and conversely
+is null for widgets that don&#39;t, like TextBox.</p></td></tr><tr><td>dir</td><td>String</td><td><p>Bi-directional support, as defined by the <a href="http://www.w3.org/TR/html401/struct/dirlang.html#adef-dir">HTML DIR</a>
+attribute. Either left-to-right &quot;ltr&quot; or right-to-left &quot;rtl&quot;.  If undefined, widgets renders in page&#39;s
+default direction.</p></td></tr><tr><td>domNode</td><td>DomNode</td><td><p>This is our visible representation of the widget! Other DOM
+Nodes may by assigned to other properties, usually through the
+template system&#39;s data-dojo-attach-point syntax, but the domNode
+property is the canonical &quot;top level&quot; node in widget UI.</p></td></tr><tr><td>id</td><td>String</td><td><p>A unique, opaque ID string that can be assigned by users or by the
+system. If the developer passes an ID which is known not to be
+unique, the specified ID is ignored and the system-generated ID is
+used instead.</p></td></tr><tr><td>lang</td><td>String</td><td><p>Rarely used.  Overrides the default Dojo locale used to render this widget,
+as defined by the <a href="http://www.w3.org/TR/html401/struct/dirlang.html#adef-lang">HTML LANG</a> attribute.
+Value must be among the list of locales specified during by the Dojo bootstrap,
+formatted according to <a href="http://www.ietf.org/rfc/rfc3066.txt">RFC 3066</a> (like en-us).</p></td></tr><tr><td>ownerDocument</td><td>Document</td><td><p>The document this widget belongs to.  If not specified to constructor, will default to
+srcNodeRef.ownerDocument, or if no sourceRef specified, then to dojo/_base/window::doc</p></td></tr><tr><td>srcNodeRef</td><td>DomNode</td><td><p>pointer to original DOM node</p></td></tr><tr><td>style</td><td>String||Object</td><td><p>HTML style attributes as cssText string or name/value hash</p></td></tr><tr><td>textDir</td><td>String</td><td><p>Bi-directional support, the main variable which is responsible for the direction of the text.
+The text direction can be different than the GUI direction by using this parameter in creation
+of a widget.
+
+</p>
+<p>Allowed values:
+
+</p>
+<ol>
+<li>&quot;ltr&quot;</li>
+<li>&quot;rtl&quot;</li>
+<li>&quot;auto&quot; - contextual the direction of a text defined by first strong letter.</li>
+</ol>
+<p>By default is as the page direction.</p></td></tr><tr><td>title</td><td>String</td><td><p>HTML title attribute.
+
+</p>
+<p>For form widgets this specifies a tooltip to display when hovering over
+the widget (just like the native HTML title attribute).
+
+</p>
+<p>For TitlePane or for when this widget is a child of a TabContainer, AccordionContainer,
+etc., it&#39;s used to specify the tab label, accordion pane title, etc.</p></td></tr><tr><td>tooltip</td><td>String</td><td><p>When this widget&#39;s title attribute is used to for a tab label, accordion pane title, etc.,
+this specifies the tooltip to appear when the mouse is hovered over that text.</p></td></tr></tbody></table></div>
+<div class="section" id="dijit-form-button-events">
+<h2>dijit/form/Button Events<a class="headerlink" href="#dijit-form-button-events" title="Permalink to this headline">¶</a></h2>
+<h2>onBlur</h2><p>Called when the widget stops being &quot;active&quot; because
+focus moved to something outside of it, or the user
+clicked somewhere outside of it, or the widget was
+hidden.</p><h2>onChange</h2><p>Callback when this widget&#39;s value is changed.</p><h2>onClick</h2><p>Connect to this function to receive notifications of mouse click events.</p><h2>onClose</h2><p>Called when this widget is being displayed as a popup (ex: a Calendar popped
+up from a DateTextBox), and it is hidden.
+This is called from the dijit.popup code, and should not be called directly.
+
+</p>
+<p>Also used as a parameter for children of <code>dijit.layout.StackContainer</code> or subclasses.
+Callback if a user tries to close the child.   Child will be closed if this function returns true.</p><h2>onDblClick</h2><p>Connect to this function to receive notifications of mouse double click events.</p><h2>onFocus</h2><p>Called when the widget becomes &quot;active&quot; because
+it or a widget inside of it either has focus, or has recently
+been clicked.</p><h2>onHide</h2><p>Called when another widget becomes the selected pane in a
+<code>dijit.layout.TabContainer</code>, <code>dijit.layout.StackContainer</code>,
+<code>dijit.layout.AccordionContainer</code>, etc.
+
+</p>
+<p>Also called to indicate hide of a <code>dijit.Dialog</code>, <code>dijit.TooltipDialog</code>, or <code>dijit.TitlePane</code>.</p><h2>onKeyDown</h2><p>Connect to this function to receive notifications of keys being pressed down.</p><h2>onKeyPress</h2><p>Connect to this function to receive notifications of printable keys being typed.</p><h2>onKeyUp</h2><p>Connect to this function to receive notifications of keys being released.</p><h2>onMouseDown</h2><p>Connect to this function to receive notifications of when the mouse button is pressed down.</p><h2>onMouseEnter</h2><p>Connect to this function to receive notifications of when the mouse moves onto this widget.</p><h2>onMouseLeave</h2><p>Connect to this function to receive notifications of when the mouse moves off of this widget.</p><h2>onMouseMove</h2><p>Connect to this function to receive notifications of when the mouse moves over nodes contained within this widget.</p><h2>onMouseOut</h2><p>Connect to this function to receive notifications of when the mouse moves off of nodes contained within this widget.</p><h2>onMouseOver</h2><p>Connect to this function to receive notifications of when the mouse moves onto nodes contained within this widget.</p><h2>onMouseUp</h2><p>Connect to this function to receive notifications of when the mouse button is released.</p><h2>onShow</h2><p>Called when this widget becomes the selected pane in a
+<code>dijit.layout.TabContainer</code>, <code>dijit.layout.StackContainer</code>,
+<code>dijit.layout.AccordionContainer</code>, etc.
+
+</p>
+<p>Also called to indicate display of a <code>dijit.Dialog</code>, <code>dijit.TooltipDialog</code>, or <code>dijit.TitlePane</code>.</p></div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../index.html">Startpage</a></li>
+                            <li><a href="../dojo/index.html">Dojo</a></li>
+                            <li><a href="../dijit/index.html">Dijit</a></li>
+                            <li><a href="../dojox/index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Inlining API</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#dojo-on-root-function">dojo/on Root Function</a></li>
+<li><a class="reference internal" href="#dojo-stateful-methods">dojo/Stateful Methods</a></li>
+<li><a class="reference internal" href="#dijit-widgetbase-properties">dijit/_WidgetBase Properties</a></li>
+<li><a class="reference internal" href="#dijit-form-button-events">dijit/form/Button Events</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Dojo Developer Notebook</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="markup.html"
+                        title="next chapter">Dojo Inline Documentation</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

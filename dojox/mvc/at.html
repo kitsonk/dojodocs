@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dojox/mvc/at &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../../index.html" />
+    <link rel="up" title="DojoX" href="../contents.html" />
+    <link rel="next" title="dojox/mvc/equals" href="equals.html" />
+    <link rel="prev" title="dojox.mvc._DataBindingMixin" href="_DataBindingMixin.html" />
+
+    <link rel="stylesheet" href="../../_static/css/site.css">
+    <link rel="stylesheet" href="../../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojox-mvc-at">
+<span id="id1"></span><h1><a class="toc-backref" href="#id2">dojox/mvc/at</a><a class="headerlink" href="#dojox-mvc-at" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Akira Sudoh, Ed Chatelain</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Developers:</th><td class="field-body">Akira Sudoh, Ed Chatelain</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">since:</th><td class="field-body">V1.8</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#dojox-mvc-at" id="id2">dojox/mvc/at</a></li>
+<li><a class="reference internal" href="#dojox-mvc-at-api" id="id3">dojox/mvc/at API</a><ul>
+<li><a class="reference internal" href="#at-function-syntax-with-widgets" id="id4">at function syntax with widgets</a></li>
+<li><a class="reference internal" href="#basic-examples" id="id5">Basic examples</a></li>
+<li><a class="reference internal" href="#data-binding-direction" id="id6">Data binding direction</a></li>
+<li><a class="reference internal" href="#data-converter" id="id7">Data converter</a></li>
+<li><a class="reference internal" href="#relative-data-binding" id="id8">Relative data binding</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="dojox-mvc-at-api">
+<h1><a class="toc-backref" href="#id3">dojox/mvc/at API</a><a class="headerlink" href="#dojox-mvc-at-api" title="Permalink to this headline">¶</a></h1>
+<p>The module&#8217;s value is an <tt class="docutils literal"><span class="pre">at</span></tt> function that can be directly called to create a pointer (called at handle) to a <a class="reference internal" href="../../dojo/Stateful.html#dojo-stateful"><em>dojo/Stateful</em></a> property.
+The <tt class="docutils literal"><span class="pre">at</span></tt> function is in form shown below, which returns an at handle:</p>
+<div class="highlight"><pre><span class="nx">at</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">targetProp</span><span class="p">);</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">at(target, targetProp);</textarea></div><p>The following parameters should be provided to the at function:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">target</span></tt> - This is the <a class="reference internal" href="../../dojo/Stateful.html#dojo-stateful"><em>dojo/Stateful</em></a> to point to, or a string either in <tt class="docutils literal"><span class="pre">rel:target</span></tt> or in <tt class="docutils literal"><span class="pre">widget:widgetid</span></tt> format. <tt class="docutils literal"><span class="pre">rel:target</span></tt> format looks for a particular property in the parent widget (see <a class="reference internal" href="#relative-data-binding">Relative data binding</a> for more details). <tt class="docutils literal"><span class="pre">widget:widgetid</span></tt> format looks for a widget with <tt class="docutils literal"><span class="pre">widgetid</span></tt> ID.</li>
+<li><tt class="docutils literal"><span class="pre">targetProp</span></tt> - This is the <a class="reference internal" href="../../dojo/Stateful.html#dojo-stateful"><em>dojo/Stateful</em></a> property name in target, or <tt class="docutils literal"><span class="pre">*</span></tt>. Using <tt class="docutils literal"><span class="pre">*</span></tt> means &#8220;all properties&#8221;. (See <a class="reference internal" href="sync.html#dojox-mvc-sync-wildcard-syntax"><em>dojox/mvc/sync:Wildcard syntax</em></a> for more details)</li>
+</ul>
+<div class="section" id="at-function-syntax-with-widgets">
+<h2><a class="toc-backref" href="#id4">at function syntax with widgets</a><a class="headerlink" href="#at-function-syntax-with-widgets" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">at</span></tt> function is typically used as a mixin property of a widget (<a class="reference internal" href="../../dojo/parser.html#dojo-parser-parser-parameters"><em>data-dojo-props</em></a> or the first parameter of widget&#8217;s constructor), in below forms, where in both cases the value property in above TextBox is synchronized with <tt class="docutils literal"><span class="pre">target.targetProp</span></tt>:</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/TextBox&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(target, &#39;targetProp&#39;)&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;&lt;/script&gt;
+&lt;input data-dojo-type=&quot;dijit/form/TextBox&quot;
+ data-dojo-props=&quot;value: at(target, 'targetProp')&quot;&gt;</textarea></div><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span><span class="s2">&quot;dojo/Stateful&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/form/TextBox&quot;</span><span class="p">,</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Stateful</span><span class="p">,</span> <span class="nx">TextBox</span><span class="p">,</span> <span class="nx">at</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stateful</span><span class="p">({</span><span class="nx">targetProp</span><span class="o">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">});</span>
+  <span class="kd">var</span> <span class="nx">textbox</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TextBox</span><span class="p">({</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">at</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">targetProp</span><span class="p">)</span>
+  <span class="p">},</span> <span class="nx">srcNodeRef</span><span class="p">);</span>
+  <span class="nx">textbox</span><span class="p">.</span><span class="nx">startup</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([&quot;dojo/Stateful&quot;, &quot;dijit/form/TextBox&quot;, &quot;dojox/mvc/at&quot;], function(Stateful, TextBox, at){
+  var target = new Stateful({targetProp: &quot;foo&quot;});
+  var textbox = new TextBox({
+    value: at(target, targetProp)
+  }, srcNodeRef);
+  textbox.startup();
+});</textarea></div></div>
+<div class="section" id="basic-examples">
+<h2><a class="toc-backref" href="#id5">Basic examples</a><a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h2>
+<p>In the example below, after two seconds, the text box changes from &#8220;Foo&#8221; to &#8220;Bar&#8221; as the <tt class="docutils literal"><span class="pre">value</span></tt> property in <tt class="docutils literal"><span class="pre">model</span></tt> changes.</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'dialog', pluginArgs:{ dojoConfig: 'parseOnLoad: false, async: true, mvc: {debugBindings: true}', version:'1.8-2.0' }, width:'320', height:'60', toolbar:'versions, themes', themename:'claro'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+    <span class="s2">&quot;dojo/parser&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/when&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/Stateful&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/domReady!&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parser</span><span class="p">,</span> <span class="nx">when</span><span class="p">,</span> <span class="nx">Stateful</span><span class="p">){</span>
+    <span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stateful</span><span class="p">({</span><span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">});</span>
+    <span class="nx">when</span><span class="p">(</span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;Bar&quot;</span><span class="p">);</span> <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+    &quot;dojo/parser&quot;, &quot;dojo/when&quot;, &quot;dojo/Stateful&quot;, &quot;dojo/domReady!&quot;
+], function(parser, when, Stateful){
+    model = new Stateful({value: &quot;Foo&quot;});
+    when(parser.parse(), function(){
+        setTimeout(function(){ model.set(&quot;value&quot;, &quot;Bar&quot;); }, 2000);
+    });
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span>
+ <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/TextBox&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(model, &#39;value&#39;)&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;&lt;/script&gt;
+&lt;input type=&quot;text&quot;
+ data-dojo-type=&quot;dijit/form/TextBox&quot;
+ data-dojo-props=&quot;value: at(model, 'value')&quot;&gt;</textarea></div></div></div><p>In the example below, edit in text box is reflected to the text next to it:</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'dialog', pluginArgs:{ dojoConfig: 'parseOnLoad: false, async: true, mvc: {debugBindings: true}', version:'1.8-2.0' }, width:'480', height:'60', toolbar:'versions, themes', themename:'claro'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+    <span class="s2">&quot;dojo/parser&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/domReady!&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parser</span><span class="p">){</span>
+    <span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+    &quot;dojo/parser&quot;, &quot;dojo/domReady!&quot;
+], function(parser){
+    parser.parse();
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">data-dojo-id=</span><span class="s">&quot;model&quot;</span>
+ <span class="na">data-dojo-type=</span><span class="s">&quot;dojo/Stateful&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: &#39;Foo&#39;&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span>
+ <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/TextBox&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(model, &#39;value&#39;)&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/_WidgetBase&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;_setValueAttr: {node: &#39;domNode&#39;, type: &#39;innerText&#39;}, value: at(model, &#39;value&#39;)&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;&lt;/script&gt;
+&lt;span data-dojo-id=&quot;model&quot;
+ data-dojo-type=&quot;dojo/Stateful&quot;
+ data-dojo-props=&quot;value: 'Foo'&quot;&gt;&lt;/span&gt;
+&lt;input type=&quot;text&quot;
+ data-dojo-type=&quot;dijit/form/TextBox&quot;
+ data-dojo-props=&quot;value: at(model, 'value')&quot;&gt;
+&lt;span data-dojo-type=&quot;dijit/_WidgetBase&quot;
+ data-dojo-props=&quot;_setValueAttr: {node: 'domNode', type: 'innerText'}, value: at(model, 'value')&quot;&gt;&lt;/span&gt;</textarea></div></div></div></div>
+<div class="section" id="data-binding-direction">
+<h2><a class="toc-backref" href="#id6">Data binding direction</a><a class="headerlink" href="#data-binding-direction" title="Permalink to this headline">¶</a></h2>
+<p>By default, <tt class="docutils literal"><span class="pre">at</span></tt> function used with widget watches for changes both to <tt class="docutils literal"><span class="pre">target.targetProp</span></tt> and the property (attribute) in widget and reflects one change to another. <tt class="docutils literal"><span class="pre">at</span></tt> function allows the direction to be specified via <tt class="docutils literal"><span class="pre">direction</span></tt> function of at handle, which takes one of the following as its first argument:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">at.from</span></tt> - Only reflect changes in <tt class="docutils literal"><span class="pre">target.targetProp</span></tt> to the property (attribute) in widget</li>
+<li><tt class="docutils literal"><span class="pre">at.to</span></tt> - Only reflect changes in the property (attribute) in widget to <tt class="docutils literal"><span class="pre">target.targetProp</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">at.both</span></tt> - Reflect changes in each other (Default)</li>
+</ul>
+<p>The basic usage of <tt class="docutils literal"><span class="pre">direction</span></tt> function is shown below, where change in <tt class="docutils literal"><span class="pre">target.targetProp</span></tt> will be reflected to value in TextBox, but not in the opposite direction:</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'dialog', pluginArgs:{ dojoConfig: 'parseOnLoad: false, async: true, mvc: {debugBindings: true}', version:'1.8-2.0' }, width:'480', height:'60', toolbar:'versions, themes', themename:'claro'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+    <span class="s2">&quot;dojo/parser&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/when&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/Stateful&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/domReady!&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parser</span><span class="p">,</span> <span class="nx">when</span><span class="p">,</span> <span class="nx">Stateful</span><span class="p">){</span>
+    <span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stateful</span><span class="p">({</span><span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">});</span>
+    <span class="nx">when</span><span class="p">(</span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;Bar&quot;</span><span class="p">);</span> <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+    &quot;dojo/parser&quot;, &quot;dojo/when&quot;, &quot;dojo/Stateful&quot;, &quot;dojo/domReady!&quot;
+], function(parser, when, Stateful){
+    model = new Stateful({value: &quot;Foo&quot;});
+    when(parser.parse(), function(){
+        setTimeout(function(){ model.set(&quot;value&quot;, &quot;Bar&quot;); }, 2000);
+    });
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/_WidgetBase&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;_setValueAttr: {node: &#39;domNode&#39;, type: &#39;innerText&#39;},</span>
+<span class="s">                  value: at(model, &#39;value&#39;)&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/TextBox&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(model, &#39;value&#39;).direction(at.from)&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;&lt;/script&gt;
+&lt;span data-dojo-type=&quot;dijit/_WidgetBase&quot;
+ data-dojo-props=&quot;_setValueAttr: {node: 'domNode', type: 'innerText'},
+                  value: at(model, 'value')&quot;&gt;&lt;/span&gt;
+&lt;input data-dojo-type=&quot;dijit/form/TextBox&quot;
+ data-dojo-props=&quot;value: at(model, 'value').direction(at.from)&quot;&gt;</textarea></div></div></div><p>See <a class="reference internal" href="sync.html#dojox-mvc-sync-data-binding-direction"><em>dojox/mvc/sync:Data binding direction</em></a> for more details.</p>
+</div>
+<div class="section" id="data-converter">
+<h2><a class="toc-backref" href="#id7">Data converter</a><a class="headerlink" href="#data-converter" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">at</span></tt> function used with widget allows <tt class="docutils literal"><span class="pre">target.targetProp</span></tt> and property (attribute) in the widget to have a different format as they are synchronized, for example, <tt class="docutils literal"><span class="pre">target.targetProp</span></tt> to have Number <tt class="docutils literal"><span class="pre">2</span></tt> and property (attribute) in widget to have String <tt class="docutils literal"><span class="pre">&quot;2&quot;</span></tt>. It&#8217;s done via <tt class="docutils literal"><span class="pre">transform</span></tt> function of at handle, as shown below:</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/TextBox&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(target, &#39;targetProp&#39;).transform({</span>
+<span class="s">                    format: function(value){</span>
+<span class="s">                      return &#39;&#39; + value;</span>
+<span class="s">                    },</span>
+<span class="s">                    parse: function(value){</span>
+<span class="s">                      return value - 0;</span>
+<span class="s">                    }</span>
+<span class="s">                  })&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;&lt;/script&gt;
+&lt;input data-dojo-type=&quot;dijit/form/TextBox&quot;
+ data-dojo-props=&quot;value: at(target, 'targetProp').transform({
+                    format: function(value){
+                      return '' + value;
+                    },
+                    parse: function(value){
+                      return value - 0;
+                    }
+                  })&quot;&gt;</textarea></div><p><tt class="docutils literal"><span class="pre">transform</span></tt> function can be used with any objects having <tt class="docutils literal"><span class="pre">format</span></tt>/<tt class="docutils literal"><span class="pre">parse</span></tt> functions, like <tt class="docutils literal"><span class="pre">dojo/number</span></tt> and <tt class="docutils literal"><span class="pre">dojo/date/locale</span></tt>. For example, <tt class="docutils literal"><span class="pre">dojo/date/locale</span></tt> can be used with <tt class="docutils literal"><span class="pre">transform</span></tt> function, as shown below:</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'dialog', pluginArgs:{ dojoConfig: 'parseOnLoad: false, async: true, mvc: {debugBindings: true}', version:'1.8-2.0' }, width:'480', height:'320', toolbar:'versions, themes', themename:'claro'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+    <span class="s2">&quot;dojo/parser&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/domReady!&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parser</span><span class="p">){</span>
+    <span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+    &quot;dojo/parser&quot;, &quot;dojo/domReady!&quot;
+], function(parser){
+    parser.parse();
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="p">,</span> <span class="nx">dateLocale</span><span class="o">:</span> <span class="s2">&quot;dojo/date/locale&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">data-dojo-id=</span><span class="s">&quot;model&quot;</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dojo/Stateful&quot;</span> <span class="na">data-dojo-props=</span><span class="s">&quot;value: new Date&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/_WidgetBase&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;_setValueAttr: {node: &#39;domNode&#39;, type: &#39;innerText&#39;},</span>
+<span class="s">                  constraints: {selector: &#39;date&#39;},</span>
+<span class="s">                  value: at(model, &#39;value&#39;).transform(dateLocale)&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/DateTextBox&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(model, &#39;value&#39;)&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;, dateLocale: &quot;dojo/date/locale&quot;&lt;/script&gt;
+&lt;span data-dojo-id=&quot;model&quot; data-dojo-type=&quot;dojo/Stateful&quot; data-dojo-props=&quot;value: new Date&quot;&gt;&lt;/span&gt;
+&lt;span data-dojo-type=&quot;dijit/_WidgetBase&quot;
+ data-dojo-props=&quot;_setValueAttr: {node: 'domNode', type: 'innerText'},
+                  constraints: {selector: 'date'},
+                  value: at(model, 'value').transform(dateLocale)&quot;&gt;&lt;/span&gt;
+&lt;input data-dojo-type=&quot;dijit/form/DateTextBox&quot;
+ data-dojo-props=&quot;value: at(model, 'value')&quot;&gt;</textarea></div></div></div><p>The <tt class="docutils literal"><span class="pre">constraints</span></tt> attribute in the non-editable UI showing date is passed as the 2nd parameter to <tt class="docutils literal"><span class="pre">format</span></tt>/<tt class="docutils literal"><span class="pre">parse</span></tt> functions.</p>
+<p>See <a class="reference internal" href="sync.html#dojox-mvc-sync-data-converter"><em>dojox/mvc/sync:Data converter</em></a> for more details.</p>
+</div>
+<div class="section" id="relative-data-binding">
+<h2><a class="toc-backref" href="#id8">Relative data binding</a><a class="headerlink" href="#relative-data-binding" title="Permalink to this headline">¶</a></h2>
+<p>When <tt class="docutils literal"><span class="pre">rel:propInParent</span></tt> format (<tt class="docutils literal"><span class="pre">propInParent</span></tt> can be omitted here) is specified in the first argument of <tt class="docutils literal"><span class="pre">at</span></tt> function, it goes up DOM hierarchy to find a widget meeting the following criteria:</p>
+<ul class="simple">
+<li>The property in widget pointed by <tt class="docutils literal"><span class="pre">widget[widget._relTargetProp]</span></tt> (or <tt class="docutils literal"><span class="pre">widget.target</span></tt> as the default) exists -OR-</li>
+<li>Such property is defined in the widget class</li>
+</ul>
+<p>Then <tt class="docutils literal"><span class="pre">widget[widget._relTargetProp</span> <span class="pre">||</span> <span class="pre">&quot;target&quot;].propInParent</span></tt> (or simply <tt class="docutils literal"><span class="pre">widget[widget._relTargetProp</span> <span class="pre">||</span> <span class="pre">&quot;target&quot;]</span></tt> if <tt class="docutils literal"><span class="pre">propInParent</span></tt> is omitted) will be used as data binding target, which the property in widget specified in data binding syntax will be in sync with. When the binding target changes, the data binding will be reestablished with the newer target.</p>
+<p>The basic usage of relative data binding is as shown below, where after two seconds, the text box changes from &#8220;Foo&#8221; to &#8220;Bar&#8221; as the parent widget for relative data binding (having <tt class="docutils literal"><span class="pre">target</span></tt> property) changes its <tt class="docutils literal"><span class="pre">target</span></tt> property from the one having &#8220;Foo&#8221; to the one having &#8220;Bar&#8221;:</p>
+<div data-dojo-type="docs.MiniGlass" class="CodeGlassMini" data-dojo-props="type: 'dialog', pluginArgs:{ dojoConfig: 'parseOnLoad: false, async: true, mvc: {debugBindings: true}', version:'1.8-2.0' }, width:'480', height:'60', toolbar:'versions, themes', themename:'claro'"><div class="CodeGlassMiniInner"><div class="highlight"><pre><span class="nx">require</span><span class="p">([</span>
+    <span class="s2">&quot;dojo/parser&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/when&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/Stateful&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/domReady!&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parser</span><span class="p">,</span> <span class="nx">when</span><span class="p">,</span> <span class="nx">Stateful</span><span class="p">){</span>
+    <span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stateful</span><span class="p">({</span><span class="nx">child</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}});</span>
+    <span class="nx">when</span><span class="p">(</span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;child&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Stateful</span><span class="p">({</span><span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;Bar&quot;</span><span class="p">}));</span> <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">require([
+    &quot;dojo/parser&quot;, &quot;dojo/when&quot;, &quot;dojo/Stateful&quot;, &quot;dojo/domReady!&quot;
+], function(parser, when, Stateful){
+    model = new Stateful({child: {value: &quot;Foo&quot;}});
+    when(parser.parse(), function(){
+        setTimeout(function(){ model.set(&quot;child&quot;, new Stateful({value: &quot;Bar&quot;})); }, 2000);
+    });
+});</textarea></div><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;dojo/require&quot;</span><span class="nt">&gt;</span><span class="nx">at</span><span class="o">:</span> <span class="s2">&quot;dojox/mvc/at&quot;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/_WidgetBase&quot;</span>
+ <span class="na">data-dojo-props=</span><span class="s">&quot;target: at(model, &#39;child&#39;)&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">data-dojo-type=</span><span class="s">&quot;dijit/form/TextBox&quot;</span>
+     <span class="na">data-dojo-props=</span><span class="s">&quot;value: at(&#39;rel:&#39;, &#39;value&#39;)&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="html"><textarea style="display:none">&lt;script type=&quot;dojo/require&quot;&gt;at: &quot;dojox/mvc/at&quot;&lt;/script&gt;
+&lt;div data-dojo-type=&quot;dijit/_WidgetBase&quot;
+ data-dojo-props=&quot;target: at(model, 'child')&quot;&gt;
+    &lt;input data-dojo-type=&quot;dijit/form/TextBox&quot;
+     data-dojo-props=&quot;value: at('rel:', 'value')&quot;&gt;
+&lt;/div&gt;</textarea></div></div></div></div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../../index.html">Startpage</a></li>
+                            <li><a href="../../dojo/index.html">Dojo</a></li>
+                            <li><a href="../../dijit/index.html">Dijit</a></li>
+                            <li><a href="../index.html">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">dojox/mvc/at</a></li>
+<li><a class="reference internal" href="#dojox-mvc-at-api">dojox/mvc/at API</a><ul>
+<li><a class="reference internal" href="#at-function-syntax-with-widgets">at function syntax with widgets</a></li>
+<li><a class="reference internal" href="#basic-examples">Basic examples</a></li>
+<li><a class="reference internal" href="#data-binding-direction">Data binding direction</a></li>
+<li><a class="reference internal" href="#data-converter">Data converter</a></li>
+<li><a class="reference internal" href="#relative-data-binding">Relative data binding</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="_DataBindingMixin.html"
+                        title="previous chapter">dojox.mvc._DataBindingMixin</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="equals.html"
+                        title="next chapter">dojox/mvc/equals</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1331 @@
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>DojoX &mdash; The Dojo Toolkit - Reference Guide</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="The Dojo Toolkit - Reference Guide" href="../index.html" />
+    <link rel="up" title="DojoX" href="contents.html" />
+    <link rel="next" title="DojoX - Dojo Extensions and Experiments" href="info.html" />
+    <link rel="prev" title="dojox.image.ThumbnailPicker" href="image/ThumbnailPicker.html" />
+
+    <link rel="stylesheet" href="../_static/css/site.css">
+    <link rel="stylesheet" href="../_static/js/docs/resources/guide.css">
+	<script type="text/javascript">
+		dojoConfig = {
+			async: true
+		};
+	</script>
+    <script type="text/javascript" src="../_static/js/dojo/dojo.js"></script>
+    <script type="text/javascript" src="../_static/js/docs/guide.js"></script>
+
+  </head>
+  <body>  
+
+    <div class="document">
+    <div id="accessibilityNode">
+        <a href="#intro">Skip to Content</a> | <a href="#nav">Skip to Navigation</a>
+    </div>
+    <hr class="hide">
+    <div id="page" class="docPage">
+        <div id="header">
+            <div class="container">
+                <span id="logo"><a title="Home" href="http://dojotoolkit.org">
+                    <img alt="Dojo Toolkit" src="../_static/images/logo.png"></a>
+                </span>
+                <ul id="navigation">
+                    <li class="home"><a href="/"><span class="homeIcon"></span></a></li>
+                    <li class="download"><a href="/download/">Download</a></li>
+                    <li class="features"><a href="/features/">Features</a></li>
+                    <li class="docs active"><a href="/documentation/">Documentation</a></li>
+                    <li class="community"><a href="/community/">Community</a></li>
+                    <li class="about"><a href="/blog/">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <hr class="hide" />
+    
+        <div id="main">
+            <div id="content" class="innerBox">
+                <div class="pageTitleContainer">
+                    <h1>Documentation</h1>
+                    <ul class="subnav">
+                        <li><a href="/documentation/"><span>Tutorials</span></a></li>
+                        <li class="active"><a href="/reference-guide/"><span>Reference Guide</span></a></li>
+                        <li><a href="/api/"><span>API Documentation</span></a></li>
+                    </ul>
+                </div>
+                <div class="line">
+                    <div class="unit size3of4 firstUnit">
+                        <div class="spacer">
+                            
+  <div class="section" id="dojox">
+<span id="dojox-index"></span><h1><a class="toc-backref" href="#id1">DojoX</a><a class="headerlink" href="#dojox" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#dojox" id="id1">DojoX</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#website-webapp-infrastructure" id="id3">Website/WebApp Infrastructure</a></li>
+<li><a class="reference internal" href="#mobile" id="id4">Mobile</a></li>
+<li><a class="reference internal" href="#language-programming" id="id5">Language/Programming</a></li>
+<li><a class="reference internal" href="#graphics-and-effects" id="id6">Graphics and Effects</a></li>
+<li><a class="reference internal" href="#data-visualization" id="id7">Data Visualization</a></li>
+<li><a class="reference internal" href="#datastores" id="id8">DataStores</a></li>
+<li><a class="reference internal" href="#communication" id="id9">Communication</a></li>
+<li><a class="reference internal" href="#widgets-and-forms" id="id10">Widgets and Forms</a></li>
+<li><a class="reference internal" href="#utility-modules" id="id11">Utility Modules</a></li>
+<li><a class="reference internal" href="#see-also" id="id12">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>DojoX historically was an area for development of additional Dojo functionality.  Over the years, many of the sub-
+packages and modules have taken dramatically different paths.  With some packages becoming very mature, some still
+being highly experimental and some being essentially abandoned.</p>
+<p>In the future (Dojo 2.0), the DojoX package and namespace will removed.  Sub-Packages and modules will be either
+integrated into the Dojo Core, Dijit or separated as their own stand-alone package.  For the 1.X code stream though,
+in order to ensure backwards compatibility, all these packages are contained within the <tt class="docutils literal"><span class="pre">dojox</span></tt> namespace and
+package.</p>
+<p>There are several different statuses for sub-packages and modules:</p>
+<ul class="simple">
+<li><strong>Mature</strong> - This package or module is considered mature and is being actively developed and maintained by
+committers within the Dojo Toolkit.  It is expected that it will persist into the foreseeable future.</li>
+<li><strong>Experimental</strong> - This package or module is experimental, while it is being actively developed and maintained, the
+API may change in the future and developers should be cautious about depending on the API remaining unchanged or the
+code continuing to persist in the future.</li>
+<li><strong>Maintained</strong> - This code is being actively maintained, but may or may not persist into Dojo 2.0.</li>
+<li><strong>Deprecated</strong> - This code is being actively maintained for backwards compatibility purposes, but a decision has
+been made that this package will not persist into Dojo 2.0.</li>
+<li><strong>Abandoned</strong> - This code is not being actively maintained anymore.  End developers may have difficulty using this
+code in current and future versions of the Dojo Toolkit.  Patches are usually welcome for bug fixes, but it is highly
+unlikely new features or enhancements will be considered.</li>
+</ul>
+<p>The following tables provides an overview of the sub-packages and modules in DojoX.  It is important to note though,
+that the definitive status of each part of the code is contained in the source codes <tt class="docutils literal"><span class="pre">README</span></tt> file within the
+sub-package&#8217;s directory.</p>
+</div>
+<div class="section" id="website-webapp-infrastructure">
+<h2><a class="toc-backref" href="#id3">Website/WebApp Infrastructure</a><a class="headerlink" href="#website-webapp-infrastructure" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="analytics.html#dojox-analytics"><em>dojox/analytics</em></a></td>
+<td>Experimental</td>
+<td>Analytics and client monitoring system.  Including the base
+analytics system and any number of plugins enables logging of
+different system data back to the server.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="app.html#dojox-app"><em>dojox/app</em></a></td>
+<td>Mature</td>
+<td>A small application framework providing a set of classes to
+manage the the life-cycle and behavior of a single page
+application delivered to a mobile or desktop platform.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="collections.html#dojox-collections"><em>dojox/collections</em></a></td>
+<td>Mature</td>
+<td>Modules used to provide more functionality around common types
+of collections.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/dnd</em></td>
+<td>Experimental</td>
+<td>Extending and augmenting <tt class="docutils literal"><span class="pre">dojo/dnd</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="dtl.html#dojox-dtl"><em>dojox/dtl</em></a></td>
+<td>Experimental</td>
+<td>The Dojo implementation of the Django Template Language</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="gesture.html#dojox-gesture"><em>dojox/gesture</em></a></td>
+<td>Experimental</td>
+<td>Platform neutral gesture support.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="mdnd.html#dojox-mdnd"><em>dojox/mdnd</em></a></td>
+<td>Experimental</td>
+<td>An alternative Drag and Drop solution that does not use
+avatars when dragging items.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="mvc.html#dojox-mvc"><em>dojox/mvc</em></a></td>
+<td>Experimental</td>
+<td>Abstraction classes to utilize a Method View Controller
+framework with Dojo.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="storage.html#dojox-storage"><em>dojox/storage</em></a></td>
+<td>Abandoned</td>
+<td>Provides persistent storage in the browser.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="wire.html#dojox-wire"><em>dojox/wire</em></a></td>
+<td>Abandoned</td>
+<td>A framework for wiring visual objects to data.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/wire/ml</em></td>
+<td>Abandoned</td>
+<td>A markup language for wiring the objects to the data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mobile">
+<h2><a class="toc-backref" href="#id4">Mobile</a><a class="headerlink" href="#mobile" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="mobile.html#dojox-mobile"><em>dojox/mobile</em></a></td>
+<td>Mature</td>
+<td>A mobile framework built on top of Dojo and Dijit</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="mobile/app.html#dojox-mobile-app"><em>dojox/mobile/app</em></a></td>
+<td>Deprecated</td>
+<td>Use <tt class="docutils literal"><span class="pre">dojox/app</span></tt> instead.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="language-programming">
+<h2><a class="toc-backref" href="#id5">Language/Programming</a><a class="headerlink" href="#language-programming" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="lang/index.html#dojox-lang-index"><em>dojox/lang</em></a></td>
+<td>Maintained</td>
+<td>Various language extensions.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="lang/aspect.html#dojox-lang-aspect"><em>dojox/lang/aspect</em></a></td>
+<td>Maintained</td>
+<td>More full featured aspect based programming not covered in
+<tt class="docutils literal"><span class="pre">dojo/aspect</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="lang/async.html#dojox-lang-async"><em>dojox/lang/async</em></a></td>
+<td>Maintained</td>
+<td>Helpers for event driven programming</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="lang/functional.html#dojox-lang-functional"><em>dojox/lang/functional</em></a></td>
+<td>Maintained</td>
+<td>Provides lambda functions and common functional operations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="lang/observable.html#dojox-lang-observable"><em>dojox/lang/observable</em></a></td>
+<td>Deprecated</td>
+<td>Covered by <tt class="docutils literal"><span class="pre">dojo/Stateful</span></tt></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="lang/oo.html#dojox-lang-oo"><em>dojox/lang/oo</em></a></td>
+<td>Maintained</td>
+<td>Provides mixers to support traits and mixins for object-
+oriented programming.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/rails</em></td>
+<td>Abandoned</td>
+<td>This is a dojo plugin for Rails 3.x UJS support.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="graphics-and-effects">
+<h2><a class="toc-backref" href="#id6">Graphics and Effects</a><a class="headerlink" href="#graphics-and-effects" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="av.html#dojox-av"><em>dojox/av</em></a></td>
+<td>Experimental</td>
+<td>Audio and video capabilities to the Open Web. Wraps common
+media types (Flash and Quicktime) and provides easy to use
+objects to accomplish basic A/V tasks.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="drawing.html#dojox-drawing"><em>dojox/drawing</em></a></td>
+<td>Experimental</td>
+<td>A package that builds on top of <tt class="docutils literal"><span class="pre">dojox/gfx</span></tt> to be able to
+create and save vector based drawings.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="flash.html#dojox-flash"><em>dojox/flash</em></a></td>
+<td>Experimental</td>
+<td>Infrastructure for high-performance Flash/JavaScript
+communication</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/fx/easing</em></td>
+<td>Deprecated</td>
+<td>Use <tt class="docutils literal"><span class="pre">dojo/fx/easing</span></tt> instead.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="fx/ext-dojo/complex.html#dojox-fx-ext-dojo-complex"><em>dojox/fx/ext-dojo/complex</em></a></td>
+<td>Maintained</td>
+<td>Extends <tt class="docutils literal"><span class="pre">dojo/_base/fx::animateProperty()</span></tt> to be able to
+handle more complex property adjustments, specifically those
+related to CSS3.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/fx/ext-dojo/NodeList-style</em></td>
+<td>Maintained</td>
+<td>Extends NodeList with the features of <tt class="docutils literal"><span class="pre">dojox/fx/style</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="fx/ext-dojo/NodeList.html#dojox-fx-ext-dojo-nodelist"><em>dojox/fx/ext-dojo/NodeList</em></a></td>
+<td>Maintained</td>
+<td>Extends NodeList with the features of the rest of
+<tt class="docutils literal"><span class="pre">dojox/fx</span></tt></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="fx/ext-dojo/reverse.html#dojox-fx-ext-dojo-reverse"><em>dojox/fx/ext-dojo/reverse</em></a></td>
+<td>Maintained</td>
+<td>Extends <tt class="docutils literal"><span class="pre">dojo/_base/fx::Animation</span></tt> with the ability to
+easily reverse an animation.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/fx/flip</em></td>
+<td>Experimental</td>
+<td>Animate a node flipping following a specific direction.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/fx/scroll</em></td>
+<td>Experimental</td>
+<td>Returns an animation that will smooth-scroll to a node.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/fx/Shadow</em></td>
+<td>Experimental</td>
+<td>Adds a drop-shadow to a node.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/fx/split</em></td>
+<td>Maintained</td>
+<td>Various animations that take a node, split it and animated it.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="fx/style.html#dojox-fx-style"><em>dojox/fx/style</em></a></td>
+<td>Experimental</td>
+<td>Allows for animations based on normalized CSS definitions.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/fx/text</em></td>
+<td>Maintained</td>
+<td>A set of animations used for animating text blocks.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="fx/Timeline.html#dojox-fx-timeline"><em>dojox/fx/Timeline</em></a></td>
+<td>Maintained</td>
+<td>Allow for a complex animations based on an array of
+&#8220;keyframes&#8221;.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="gfx.html#dojox-gfx"><em>dojox/gfx</em></a></td>
+<td>Mature</td>
+<td>The platform independent Dojo graphics libraries.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="gfx3d.html#dojox-gfx3d"><em>dojox/gfx3d</em></a></td>
+<td>Experimental</td>
+<td>A simple portable 3D graphics library.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="image.html#dojox-image"><em>dojox/image</em></a></td>
+<td>Maintained</td>
+<td>Provides a common API for images</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="image/Badge.html#dojox-image-badge"><em>dojox/image/Badge</em></a></td>
+<td>Experimental</td>
+<td>A simple grid of Images that loops through thumbnails</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="image/FlickrBadge.html#dojox-image-flickrbadge"><em>dojox/image/FlickrBadge</em></a></td>
+<td>Maintained</td>
+<td>A simple grid of Images that loops through thumbnails from a
+Flickr account</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="image/Gallery.html#dojox-image-gallery"><em>dojox/image/Gallery</em></a></td>
+<td>Abandoned</td>
+<td>A gallery widget</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="image/Lightbox.html#dojox-image-lightbox"><em>dojox/image/Lightbox</em></a></td>
+<td>Experimental</td>
+<td>A dojo-based Lightbox implementation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="image/LightboxNano.html#dojox-image-lightboxnano"><em>dojox/image/LightboxNano</em></a></td>
+<td>Experimental</td>
+<td>A simple &#8220;nano&#8221; version of the lightbox.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="image/Magnifier.html#dojox-image-magnifier"><em>dojox/image/Magnifier</em></a></td>
+<td>Maintained</td>
+<td>Adds magnification on a portion of an image element, using
+<tt class="docutils literal"><span class="pre">dojox/gfx</span></tt></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="image/MagnifierLite.html#dojox-image-magnifierlite"><em>dojox/image/MaginfierLite</em></a></td>
+<td>Experimental</td>
+<td>Adds magnification on a portion of an image element</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="image/SlideShow.html#dojox-image-slideshow"><em>dojox/image/SlideShow</em></a></td>
+<td>Abandoned</td>
+<td>A Slideshow Widget</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="image/ThumbnailPicker.html#dojox-image-thumbnailpicker"><em>dojox/image/TumbnailPicker</em></a></td>
+<td>Abandoned</td>
+<td>A scrolling Thumbnail Picker widget</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/sketch</em></td>
+<td>Experimental</td>
+<td>A cross-browser drawing editor based on <tt class="docutils literal"><span class="pre">dojox/gfx</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="data-visualization">
+<h2><a class="toc-backref" href="#id7">Data Visualization</a><a class="headerlink" href="#data-visualization" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="charting.html#dojox-charting"><em>dojox/charting</em></a></td>
+<td>Mature</td>
+<td>Charting capabilities built on top of <tt class="docutils literal"><span class="pre">dojox/gfx</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="dgauges.html#dojox-dgauges"><em>dojox/dgauges</em></a></td>
+<td>Mature</td>
+<td>Gauges widget framework, deprecates <tt class="docutils literal"><span class="pre">dojox/gauges</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="gantt.html#dojox-gantt"><em>dojox/gantt</em></a></td>
+<td>Maintained</td>
+<td>A gantt type charting widget.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="gauges.html#dojox-gauges"><em>dojox/gauges</em></a></td>
+<td>Deprecated</td>
+<td>Replaced by <tt class="docutils literal"><span class="pre">dojox/dgauges</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="geo/charting.html#dojox-geo-charting"><em>dojox/geo/charting</em></a></td>
+<td>Experimental</td>
+<td>Map based <tt class="docutils literal"><span class="pre">dojox/charting</span></tt> type widgets.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="geo/openlayers.html#dojox-geo-openlayers"><em>dojox/geo/openlayers</em></a></td>
+<td>Experimental</td>
+<td>Modules for using OpenLayers mapping APIs.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="treemap.html#dojox-treemap"><em>dojox/treemap</em></a></td>
+<td>Experimental</td>
+<td>A data visualization widget.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="datastores">
+<h2><a class="toc-backref" href="#id8">DataStores</a><a class="headerlink" href="#datastores" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="data.html#dojox-data"><em>dojox/data</em></a></td>
+<td>Deprecated</td>
+<td>The <tt class="docutils literal"><span class="pre">dojo/data</span></tt> API which all the <tt class="docutils literal"><span class="pre">dojox/data</span></tt> modules are
+based off of is deprecated.  If these stores persist they will
+be rewritten to work off of the <tt class="docutils literal"><span class="pre">dojo/store</span></tt> API.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/AndOrReadStore.html#dojox-data-andorreadstore"><em>dojox/data/AndOrReadStore</em></a></td>
+<td>Deprecated</td>
+<td>Extends ItemFileReadStore to provide AND/OR query formats</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/AndOrWriteStore.html#dojox-data-andorwritestore"><em>dojox/data/AndOrWriteStore</em></a></td>
+<td>Deprecated</td>
+<td>Extends ItemFileWriteStore to provide AND/OR query formats</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/AppStore.html#dojox-data-appstore"><em>dojox/data/AppStore</em></a></td>
+<td>Deprecated</td>
+<td>A datastore that implements full read, write and identify APIs
+for working with ATOM documents.  The store uses the full APP
+protocol.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/AtomReadStore.html#dojox-data-atomreadstore"><em>dojox/data/AtomReadStore</em></a></td>
+<td>Deprecated</td>
+<td>Reads Atom XML documents.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/data/CdfStore</em></td>
+<td>Abandoned</td>
+<td>Used for interfacing with Tibo GI and requires Tibco&#8217;s JSX3
+JavaScript Library</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/ClientFilter.html#dojox-data-clientfilter"><em>dojox/data/ClientFilter</em></a></td>
+<td>Deprecated</td>
+<td>This is an abstract data store module for adding updatable
+result set functionality to an existing data store class.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/CouchDBRestStore.html#dojox-data-couchdbreststore"><em>dojox/data/CouchDBRestStore</em></a></td>
+<td>Deprecated</td>
+<td>Builds on JsonRestStore to provide connectivity to CouchDB</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/CssClassStore.html#dojox-data-cssclassstore"><em>dojox/data/CssClassStore</em></a></td>
+<td>Deprecated</td>
+<td>Allows the searching/querying over CSS classes defined in a
+page in a browser.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/CssRuleStore.html#dojox-data-cssrulestore"><em>dojox/data/CssRuleStore</em></a></td>
+<td>Deprecated</td>
+<td>Allows the searching/querying over CSS rules loaded in a
+page in a browser.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/CsvStore.html#dojox-data-csvstore"><em>dojox/data/CsvStore</em></a></td>
+<td>Deprecated</td>
+<td>Comma-Separated text datastore implementation.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/FileStore.html#dojox-data-filestore"><em>dojox/data/FileStore</em></a></td>
+<td>Deprecated</td>
+<td>A specific implementation providing a lazy-loading store of
+file system type objects.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/FlickrRestStore.html#dojox-data-flickrreststore"><em>dojox/data/FlickrRestStore</em></a></td>
+<td>Deprecated</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/FlickrStore.html#dojox-data-flickrstore"><em>dojox/data/FlickrStore</em></a></td>
+<td>Deprecated</td>
+<td>Data store driven by Flickr.com public API.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/GoogleFeedStore.html#dojox-data-googlefeedstore"><em>dojox/data/GoogleFeedStore</em></a></td>
+<td>Deprecated</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/GoogleSearchStore.html#dojox-data-googlesearchstore"><em>dojox/data/GoogleSearchStore</em></a></td>
+<td>Deprecated</td>
+<td>Datastore that interfaces to Google&#8217;s AJAX search services</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/HtmlStore.html#dojox-data-htmlstore"><em>dojox/data/HtmlStore</em></a></td>
+<td>Deprecated</td>
+<td>Reads arbitrary HTML to be used as a datastore, including
+tables, ordered and un-ordered lists and lists of <tt class="docutils literal"><span class="pre">&lt;div&gt;</span></tt>
+elements.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/HtmlTableStore.html#dojox-data-htmltablestore"><em>dojox/data/HtmlTableStore</em></a></td>
+<td>Deprecated</td>
+<td>Datastore specifically designed for reading HTML tables.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/data/ItemExplorer</em></td>
+<td>Abandoned</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/data/JsonQueryRestStore</em></td>
+<td>Deprecated</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/JsonRestStore.html#dojox-data-jsonreststore"><em>dojox/data/JsonRestStore</em></a></td>
+<td>Deprecated</td>
+<td>A store that interfaces with JSON RESTful services.  This
+been superseded by
+<a class="reference internal" href="../dojo/store/JsonRest.html#dojo-store-jsonrest"><em>data/store/JsonRest</em></a></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/KeyValueStore.html#dojox-data-keyvaluestore"><em>dojox/data/KeyValueStore</em></a></td>
+<td>Deprecated</td>
+<td>A datastore that mimics a key/value property file format.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/OpenSearchStore.html#dojox-data-opensearchstore"><em>dojox/data/OpenSearchStore</em></a></td>
+<td>Deprecated</td>
+<td>A datastore that implements OpenSearch provider search
+capability.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/OpmlStore.html#dojox-data-opmlstore"><em>dojox/data/OpmlStore</em></a></td>
+<td>Deprecated</td>
+<td>Datastore for reading OMPL formatted data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/PersevereStore.html#dojox-data-perseverestore"><em>dojox/data/PersevereStore</em></a></td>
+<td>Deprecated</td>
+<td>Builds on JsonRestStore to provide connectivity to Persevere</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/PicasaStore.html#dojox-data-picasastore"><em>dojox/data/PicasaStore</em></a></td>
+<td>Deprecated</td>
+<td>A datastore interface to one of the basic services of the
+Picasa service, the public photo feed.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/QueryReadStore.html#dojox-data-queryreadstore"><em>dojox/data/QueryReadStore</em></a></td>
+<td>Deprecated</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/RailsStore.html#dojox-data-railsstore"><em>dojox/data/RailsStore</em></a></td>
+<td>Deprecated</td>
+<td>A datastore for interacting with RESTful Rails controllers</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/S3Store.html#dojox-data-s3store"><em>dojox/data/S3Store</em></a></td>
+<td>Deprecated</td>
+<td>Builds on JsonRestStore to provide connectivity to Amazon S3</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/ServiceStore.html#dojox-data-servicestore"><em>dojox/data/ServiceStore</em></a></td>
+<td>Deprecated</td>
+<td>A read only datastore that provides an interface to an RPC
+service.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/data/SnapLogicStore</em></td>
+<td>Deprecated</td>
+<td>Datastore that interfaces to SnapLogic data services.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/data/StoreExplorer</em></td>
+<td>Abandoned</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="data/WikipediaStore.html#dojox-data-wikipediastore"><em>dojox/data/WikipediaStore</em></a></td>
+<td>Deprecated</td>
+<td>A datastore interface to Wikipedia, using the Wikipedia SMD
+spec from <tt class="docutils literal"><span class="pre">dojox/rpc</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="data/XmlStore.html#dojox-data-xmlstore"><em>dojox/data/XmlStore</em></a></td>
+<td>Deprecated</td>
+<td>Datastore for handling XML based services or documents.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/data/util/JsonQuery</em></td>
+<td>Deprecated</td>
+<td>Mixin that converts object attribute queries to JSONQuery/
+JSONPath syntax to be sent to the server.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="communication">
+<h2><a class="toc-backref" href="#id9">Communication</a><a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="atom.html#dojox-atom"><em>dojox/atom</em></a></td>
+<td>Experimental</td>
+<td>An implementation of the ATOM document format in a JavaScript
+model and a full Atom Publishing Protocol (APP) IO library for
+working with ATOM feeds.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="io/httpParse.html#dojox-io-httpparse"><em>dojox/io/httpParse</em></a></td>
+<td>Maintained</td>
+<td>Parses an HTTP stream for a message.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="io/OAuth.html#dojox-io-oauth"><em>dojox/io/OAuth</em></a></td>
+<td>Maintained</td>
+<td>Helper singleton for signing any kind of Ajax request using
+the OAuth 1.0 protocol.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="io/scriptFrame.html#dojox-io-scriptframe"><em>dojox/io/scriptFrame</em></a></td>
+<td>Deprecated</td>
+<td>Replaced with <tt class="docutils literal"><span class="pre">dojo/request</span></tt></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="io/windowName.html#dojox-io-windowname"><em>dojox/io/windowName</em></a></td>
+<td>Deprecated</td>
+<td>Replaced with <tt class="docutils literal"><span class="pre">dojo/request</span></tt></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="io/xhrMultiPart.html#dojox-io-xhrmultipart"><em>dojox/io/xhrMultiPart</em></a></td>
+<td>Deprecated</td>
+<td>Replaced with <tt class="docutils literal"><span class="pre">dojo/request</span></tt></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="io/xhrPlugins.html#dojox-io-xhrplugins"><em>dojox/io/xhrPlugins</em></a></td>
+<td>Deprecated</td>
+<td>Functionality now covered in <tt class="docutils literal"><span class="pre">dojo/request/registry</span></tt></td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/io/proxy/xip</em></td>
+<td>Maintained</td>
+<td>XHR IFrame Proxy</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="rpc.html#dojox-rpc"><em>dojox/rpc</em></a></td>
+<td>Maintained</td>
+<td>Extra utilities for <tt class="docutils literal"><span class="pre">dojo/rpc</span></tt></td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/socket/Reconnect</em></td>
+<td>Abandoned</td>
+<td>Provides a WebSocket with fallback to HTTP long-polling</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="xmpp.html#dojox-xmpp"><em>dojox/xmpp</em></a></td>
+<td>Abandoned</td>
+<td>An XMPP (Jabber/GTalk) implementation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="widgets-and-forms">
+<h2><a class="toc-backref" href="#id10">Widgets and Forms</a><a class="headerlink" href="#widgets-and-forms" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em class="xref std std-ref">dojox/calc</em></td>
+<td>Maintained</td>
+<td>Graphing calculator project.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="calendar.html#dojox-calendar"><em>dojox/calendar</em></a></td>
+<td>Mature</td>
+<td>A complex calendaring widget the provides the ability to
+create and manage events.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="editor/plugins.html#dojox-editor-plugins"><em>dojox/editor/plugins</em></a></td>
+<td>Various</td>
+<td>Several Plugins for the <tt class="docutils literal"><span class="pre">dojox/editor/Editor</span></tt></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/BusyButton.html#dojox-form-busybutton"><em>dojox/form/BusyButton</em></a></td>
+<td>Maintained</td>
+<td>A button the provides visual feedback when it is activated.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/CheckedMultiSelect.html#dojox-form-checkedmultiselect"><em>dojox/form/CheckedMultiSelect</em></a></td>
+<td>Maintained</td>
+<td>Allows options in a MultiSelect to be selected by a checkbox.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/DateTextBox.html#dojox-form-datetextbox"><em>dojox/form/DateTextBox</em></a></td>
+<td>Experimental</td>
+<td>A validating, serializable, range-bound date text box with a
+popup calendar.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/form/DayTextBox</em></td>
+<td>Experimental</td>
+<td>A validating, serializable, range-bound date text box with a
+popup calendar that contains just months.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/DropDownSelect.html#dojox-form-dropdownselect"><em>dojox/form/DropDownSelect</em></a></td>
+<td>Deprecated</td>
+<td>Use <tt class="docutils literal"><span class="pre">dijit/form/Select</span></tt> instead.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/DropDownStack.html#dojox-form-dropdownstack"><em>dojox/form/DropDownStack</em></a></td>
+<td>Maintained</td>
+<td>Used for &#8220;selectable&#8221; multiforms.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/FileInput.html#dojox-form-fileinput"><em>dojox/form/FileInput</em></a></td>
+<td>Experimental</td>
+<td>An <tt class="docutils literal"><span class="pre">&lt;input</span> <span class="pre">type=&quot;file&quot;&gt;</span></tt> form widget, with a button for
+uploading to be styled via CSS, a cancel button to clear
+selection.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/form/FileInputAuto</em></td>
+<td>Experimental</td>
+<td>An extension on FileInput providing background upload
+progress</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/form/FileInputBlind</em></td>
+<td>Deprecated</td>
+<td>Use <tt class="docutils literal"><span class="pre">dojox/form/FileInputAuto</span></tt> instead.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/FilePickerTextBox.html#dojox-form-filepickertextbox"><em>dojox/form/FilePickerTextBox</em></a></td>
+<td>Maintained</td>
+<td>A validating text box tied to a file picker popup</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/FileUploader.html#dojox-form-fileuploader"><em>dojox/form/FileUploader</em></a></td>
+<td>Deprecated</td>
+<td>Use <tt class="docutils literal"><span class="pre">dojox/form/Uploader</span></tt> instead.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/ListInput.html#dojox-form-listinput"><em>dojox/form/ListInput</em></a></td>
+<td>Experimental</td>
+<td>An automatic list maker.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/Manager.html#dojox-form-manager"><em>dojox/form/Manager</em></a></td>
+<td>Maintained</td>
+<td>The widget to orchestrate dynamic forms.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/form/MonthTextBox</em></td>
+<td>Experimental</td>
+<td>A validating, serializable, range-bound date text box with a
+popup calendar that contains only months.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/MultiComboBox.html#dojox-form-multicombobox"><em>dojox/form/MultiComboBox</em></a></td>
+<td>Experimental</td>
+<td>A ComboBox that accepts multiple inputs on a single line.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/PasswordValidator.html#dojox-form-passwordvalidator"><em>dojox/form/PasswordValidator</em></a></td>
+<td>Maintained</td>
+<td>A password validation widget that simplifies the
+&#8220;old/new/verify&#8221; style of requesting passwords.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/form/RadioStack</em></td>
+<td>Maintained</td>
+<td>A radio-based select stack.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/RangeSlider.html#dojox-form-rangeslider"><em>dojox/form/RangeSlider</em></a></td>
+<td>Maintained</td>
+<td>A form widget that allows one to select a range with two
+draggable images.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="form/Rating.html#dojox-form-rating"><em>dojox/form/Rating</em></a></td>
+<td>Maintained</td>
+<td>A widget for rating using stars.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/TimeSpinner.html#dojox-form-timespinner"><em>dojox/form/TimeSpinner</em></a></td>
+<td>Maintained</td>
+<td>This widget is the same as a normal NumberSpinner, but for
+the time component of a date object instead.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/form/TriStateCheckBox</em></td>
+<td>Maintained</td>
+<td>Checkbox with three states.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="form/Uploader.html#dojox-form-uploader"><em>dojox/form/Uploader</em></a></td>
+<td>Experimental</td>
+<td>A widget that creates a stylable file-input button, with
+optional multi-file selection, using only HTML elements.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/form/YearTextBox</em></td>
+<td>Experimental</td>
+<td>A validating, serializable, range-bound date text box with a
+popup calendar that contains only years.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="grid/index.html#dojox-grid-index"><em>dojox/grid</em></a></td>
+<td>Deprecated</td>
+<td>A grid widget package.  Replaced by <tt class="docutils literal"><span class="pre">dgrid</span></tt> or <tt class="docutils literal"><span class="pre">gridx</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/layout/BorderContainer</em></td>
+<td>Deprecated</td>
+<td>Covered by <tt class="docutils literal"><span class="pre">dijit/layout/BorderContainer</span></tt></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="layout/ContentPane.html#dojox-layout-contentpane"><em>dojox/layout/ContentPane</em></a></td>
+<td>Maintained</td>
+<td>An extended version of <tt class="docutils literal"><span class="pre">dijit/layout/ContentPane</span></tt> that
+supports running infile JavaScript.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/layout/Dock</em></td>
+<td>Experimental</td>
+<td>A widget that attaches to a node and keeps track of
+incoming / outgoing FloatingPanes and handles layout</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/layout/dnd</em></td>
+<td>Abandoned</td>
+<td>Enhancements to <tt class="docutils literal"><span class="pre">dojo/dnd</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="layout/DragPane.html#dojox-layout-dragpane"><em>dojox/layout/DragPane</em></a></td>
+<td>Maintained</td>
+<td>Makes a pane&#8217;s content draggable by/within it&#8217;s surface</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="layout/ExpandoPane.html#dojox-layout-expandopane"><em>dojox/layout/ExpandoPane</em></a></td>
+<td>Experimental</td>
+<td>An experimental collapsing-pane for
+<tt class="docutils literal"><span class="pre">dijit/layout/BorderContainer</span></tt></td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/layout/ext-dijit/layout</em></td>
+<td>Abandoned</td>
+<td>This core functionality is now available in Dijit.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="layout/FloatingPane.html#dojox-layout-floatingpane"><em>dojox/layout/FloatingPane</em></a></td>
+<td>Maintained</td>
+<td>A non-modal Floating window.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="layout/GridContainer.html#dojox-layout-gridcontainer"><em>dojox/layout/GridContainer</em></a></td>
+<td>Maintained</td>
+<td>A grid containing any kind of object and acting like a web
+portals.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/layout/GridContainerLite</em></td>
+<td>Maintained</td>
+<td>The GridContainerLite is a container of child elements that
+are placed in a kind of grid.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="layout/RadioGroup.html#dojox-layout-radiogroup"><em>dojox/layout/RadioGroup</em></a></td>
+<td>Experimental</td>
+<td>An enhancement to the <tt class="docutils literal"><span class="pre">dijit/layout/StackContainer</span></tt></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="layout/ResizeHandle.html#dojox-layout-resizehandle"><em>dojox/layout/ResizeHandle</em></a></td>
+<td>Experimental</td>
+<td>A draggable handle used to resize an attached node.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="layout/RotatorContainer.html#dojox-layout-rotatorcontainer"><em>dojox/layout/RotatorContainer</em></a></td>
+<td>Maintained</td>
+<td>An enhanced StackContainer that automatically transitions
+between its ContentPanes.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="layout/ScrollPane.html#dojox-layout-scrollpane"><em>dojox/layout/ScrollPane</em></a></td>
+<td>Experimental</td>
+<td>A pane that &#8220;scrolls&#8221; its content based on the mouse
+position inside.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="layout/TableContainer.html#dojox-layout-tablecontainer"><em>dojox/layout/TableContainer</em></a></td>
+<td>Experimental</td>
+<td>A container that lays out its child widgets in a table
+layout.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="layout/ToggleSplitter.html#dojox-layout-togglesplitter"><em>dojox/layout/ToggleSplitter</em></a></td>
+<td>Experimental</td>
+<td>A draggable and clickable spacer between two items in a
+<tt class="docutils literal"><span class="pre">dijit.layout.BorderContainer</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget.html#dojox-widget"><em>dojox/widget</em></a></td>
+<td>Maintained</td>
+<td>[desc]</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/AnalogGauge.html#dojox-widget-analoggauge"><em>dojox/widget/AnalogGauge</em></a></td>
+<td>Abandoned</td>
+<td>Replaced with <tt class="docutils literal"><span class="pre">dojox/dgauges</span></tt></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/AutoRotator.html#dojox-widget-autorotator"><em>dojox/widget/AutoRotator</em></a></td>
+<td>Maintained</td>
+<td>A rotator that automatically transitions between child nodes.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/BarGauge.html#dojox-widget-bargauge"><em>dojox/widget/BarGauge</em></a></td>
+<td>Abandoned</td>
+<td>Replaced with <tt class="docutils literal"><span class="pre">dojox/dgauges</span></tt></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Calendar.html#dojox-widget-calendar"><em>dojox/widget/Calendar</em></a></td>
+<td>Maintained</td>
+<td>The standard Calendar. It includes day and month/year views.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/Calendar2Pane</em></td>
+<td>Maintained</td>
+<td>A Calendar with two panes, the second one containing both
+month and year.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/Calendar3Pane</em></td>
+<td>Maintained</td>
+<td>A Calendar with three panes, includes day, month, and year
+views.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/CalendarFisheye</em></td>
+<td>Maintained</td>
+<td>The standard Calendar. It includes day, month and year views.
+FisheyeLite effects are included.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/CalendarFx.html#dojox-widget-calendarfx"><em>dojox/widget/CalendarFx</em></a></td>
+<td>Maintained</td>
+<td>The visual effects extensions for <tt class="docutils literal"><span class="pre">dojox/widget/Calendar</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/ColorPicker.html#dojox-widget-colorpicker"><em>dojox/widget/ColorPicker</em></a></td>
+<td>Experimental</td>
+<td>A HSV color picker</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/DailyCalendar</em></td>
+<td>Maintained</td>
+<td>A calendar with only a daily view.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/DataPresentation.html#dojox-widget-datapresentation"><em>dojox/widget/DataPresentation</em></a></td>
+<td>Abandoned</td>
+<td>A widget that connects to a data store in a simple manner and
+visualizes data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Dialog.html#dojox-widget-dialog"><em>dojox/widget/Dialog</em></a></td>
+<td>Maintained</td>
+<td>An enhanced version of <tt class="docutils literal"><span class="pre">dijit/Dialog</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/DialogSimple.html#dojox-widget-dialogsimple"><em>dojox/widget/DialogSimple</em></a></td>
+<td>Maintained</td>
+<td>An simple enhancements of <tt class="docutils literal"><span class="pre">dijit/Dialog</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/DocTester.html#dojox-widget-doctester"><em>dojox/widget/DocTester</em></a></td>
+<td>Abandoned</td>
+<td>A widget to run DocTests inside an HTML page.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/DynamicTooltip.html#dojox-widget-dynamictooltip"><em>dojox/widget/DynamicTooltip</em></a></td>
+<td>Abandoned</td>
+<td>Extension of <tt class="docutils literal"><span class="pre">dijit/Tooltip</span></tt> providing content set via XHR
+request via <tt class="docutils literal"><span class="pre">href</span></tt> param.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/FeedPortlet</em></td>
+<td>Abandoned</td>
+<td>A Portlet that loads a XML feed.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/FilePicker.html#dojox-widget-filepicker"><em>dojox/widget/FilePicker</em></a></td>
+<td>Abandoned</td>
+<td>A pane to display the information for the currently-selected
+file</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/FisheyeList.html#dojox-widget-fisheyelist"><em>dojox/widget/FisheyeList</em></a></td>
+<td>Maintained</td>
+<td>Menu similar to the fish eye menu on the Mac OS.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/FisheyeListItem</em></td>
+<td>Maintained</td>
+<td>Menu item inside of a FisheyeList.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/FisheyeLite.html#dojox-widget-fisheyelite"><em>dojox/widget/FisheyeLite</em></a></td>
+<td>Experimental</td>
+<td>A Light-weight Fisheye Component, or an enhanced version of
+<tt class="docutils literal"><span class="pre">dojo/fx/Toggler</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/Iterator.html#dojox-widget-iterator"><em>dojox/widget/Iterator</em></a></td>
+<td>Abandoned</td>
+<td>A widget that iterates the contents of a datastore.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Loader.html#dojox-widget-loader"><em>dojox/widget/Loader</em></a></td>
+<td>Abandoned</td>
+<td>A configurable global XHR-listener to display a loading
+message during running XHRs or to simply provide base-level
+topic to subscribe to for custom loading messages.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/MonthAndYearlyCalendar</em></td>
+<td>Maintained</td>
+<td>A calendar with only a daily view.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/MonthlyCalendar</em></td>
+<td>Maintained</td>
+<td>A calendar with only a month view.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/MultiSelectCalendar</em></td>
+<td>Experimental</td>
+<td>A simple GUI for choosing several dates in the context of a
+monthly calendar.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/Pager</em></td>
+<td>Experimental</td>
+<td>A Pager, displaying a list of sized nodes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/PlaceholderMenuItem.html#dojox-widget-placeholdermenuitem"><em>dojox/widget/PlaceholderMenuItem</em></a></td>
+<td>Experimental</td>
+<td>A menu item that can be used as a placeholder.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Portlet.html#dojox-widget-portlet"><em>dojox/widget/Portlet</em></a></td>
+<td>Maintained</td>
+<td>A container widget that is designed to be contained in a
+<tt class="docutils literal"><span class="pre">dojox/layout/GridContainer</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/PortletDialogSettings</em></td>
+<td>Maintained</td>
+<td>A settings widget to be used with a <tt class="docutils literal"><span class="pre">dojox/widget/Portlet</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/PortletSettings</em></td>
+<td>Maintained</td>
+<td>A settings widget to be used with a <tt class="docutils literal"><span class="pre">dojox/widget/Portlet</span></tt>.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/Roller.html#dojox-widget-roller"><em>dojox/widget/Roller</em></a></td>
+<td>Maintained</td>
+<td>A simple widget to take an unordered-list of Text and roll
+through them.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/RollingList.html#dojox-widget-rollinglist"><em>dojox/widget/RollingList</em></a></td>
+<td>Abandoned</td>
+<td>A rolling list that can be tied to a data store with children.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/Rotator.html#dojox-widget-rotator"><em>dojox/widget/Rotator</em></a></td>
+<td>Abandoned</td>
+<td>A widget for rotating through child nodes using transitions.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/widget/Selection</em></td>
+<td>Maintained</td>
+<td>Base class for widgets that manage a list of selected data
+items.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/SortList.html#dojox-widget-sortlist"><em>dojox/widget/SortList</em></a></td>
+<td>Abandoned</td>
+<td>A sortable unordered-list with a fixed header.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Standby.html#dojox-widget-standby"><em>dojox/widget/Standby</em></a></td>
+<td>Experimental</td>
+<td>A widget designed to act as a Standby/Busy/Disable/Blocking
+widget to indicate a particular DOM node is processing and
+cannot be clicked on at this time.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/TitleGroup.html#dojox-widget-titlegroup"><em>dojox/widget/TitleGroup</em></a></td>
+<td>Maintained</td>
+<td>A container which controls a series of <tt class="docutils literal"><span class="pre">dijit/TitlePane</span></tt>,
+allowing one to be visible and hiding siblings.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Toaster.html#dojox-widget-toaster"><em>dojox/widget/Toaster</em></a></td>
+<td>Maintained</td>
+<td>Message that slides in from the corner of the screen, used
+for notifications like &#8220;new email&#8221;.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="widget/UpgradeBar.html#dojox-widget-upgradebar"><em>dojox/widget/UpgradeBar</em></a></td>
+<td>Experimental</td>
+<td>Shows a bar at the top of the screen when the user is to be
+notified that they should upgrade their browser or a plugin.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="widget/Wizard.html#dojox-widget-wizard"><em>dojox/widget/Wizard</em></a></td>
+<td>Maintained</td>
+<td>A set of panels that display sequentially, typically notating
+a step-by-step procedure like an install.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/widget/YearlyCalendar</em></td>
+<td>Maintained</td>
+<td>A calendar with only a year view.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="utility-modules">
+<h2><a class="toc-backref" href="#id11">Utility Modules</a><a class="headerlink" href="#utility-modules" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Package/Module</th>
+<th class="head">Status</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="color.html#dojox-color"><em>dojox/color</em></a></td>
+<td>Maintained</td>
+<td>Enhancements to <tt class="docutils literal"><span class="pre">dojo/color</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/css3</em></td>
+<td>Experimental</td>
+<td>Wrappers for common CSS3 animations.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="date/buddhist.html#dojox-date-buddhist"><em>dojox/date/buddhist</em></a></td>
+<td>Mature</td>
+<td>Provides support for Buddhist dates.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="date/hebrew.html#dojox-date-hebrew"><em>dojox/date/hebrew</em></a></td>
+<td>Mature</td>
+<td>Provides support for Hebrew dates.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="date/islamic.html#dojox-date-islamic"><em>dojox/date/islamic</em></a></td>
+<td>Mature</td>
+<td>Provides support for Islamic dates.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="date/umalqura.html#dojox-date-umalqura"><em>dojox/date/umalqura</em></a></td>
+<td>Mature</td>
+<td>Provides support for Um AlQura dates.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/date/php</em></td>
+<td>Experimental</td>
+<td>Utilities for handling PHP styled dates.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/date/posix</em></td>
+<td>Experimental</td>
+<td>Utilities for handling POSIX strftime formatted dates.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="date/relative.html#dojox-date-relative"><em>dojox/date/relative</em></a></td>
+<td>Experimental</td>
+<td>Utilities for handling relative dates.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/date/timezone</em></td>
+<td>Experimental</td>
+<td>Dojo port of fleegix date plugin.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="embed.html#dojox-embed"><em>dojox/embed</em></a></td>
+<td>Experimental</td>
+<td>Wrappers for handling <tt class="docutils literal"><span class="pre">&lt;OBJECT&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;EMBED&gt;</span></tt> tags</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="encoding.html#dojox-encoding"><em>dojox/encoding</em></a></td>
+<td>Experimental</td>
+<td>Modules routines for common encoding algorithms.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="help.html#dojox-help"><em>dojox/help</em></a></td>
+<td>Abandoned</td>
+<td>Console extensions to allow access to available help resources</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="highlight.html#dojox-highlight"><em>dojox/highlight</em></a></td>
+<td>Maintained</td>
+<td>Syntax highlighting library.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="html.html#dojox-html"><em>dojox/html</em></a></td>
+<td>Maintained</td>
+<td>Less frequently used HTML functions and features.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/jq</em></td>
+<td>Abandoned</td>
+<td>A JQuery API compatibility layer.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="json/query.html#dojox-json-query"><em>dojox/json/query</em></a></td>
+<td>Maintained</td>
+<td>A comprehensive object data query tool.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="json/ref.html#dojox-json-ref"><em>dojox/json/ref</em></a></td>
+<td>Maintained</td>
+<td>JSON Referencing capable serializer and deserializer.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="json/schema.html#dojox-json-schema"><em>dojox/json/schema</em></a></td>
+<td>Maintained</td>
+<td>An object validation tool based on JSON Schema.</td>
+</tr>
+<tr class="row-odd"><td><em class="xref std std-ref">dojox/jsonPath</em></td>
+<td>Abandoned</td>
+<td>A query system similar in idea to xpath, for for JavaScript
+objects.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="math.html#dojox-math"><em>dojox/math</em></a></td>
+<td>Maintained</td>
+<td>Various math handling routines</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="NodeList/delegate.html#dojox-nodelist-delegate"><em>dojox/NodeList/delegate</em></a></td>
+<td>Maintained</td>
+<td>Extends the NodeList with a <tt class="docutils literal"><span class="pre">delegate()</span></tt> feature.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/robot/recorder</em></td>
+<td>Experimental</td>
+<td>Semi-automates the creation of DOH robot test scripts.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="secure.html#dojox-secure"><em>dojox/secure</em></a></td>
+<td>Abandoned</td>
+<td>A collection of utilities for working with untrusted data
+and code.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="sql.html#dojox-sql"><em>dojox/sql</em></a></td>
+<td>Abandoned</td>
+<td>Code to interface with the Google Gears-specific SQL engine.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="string.html#dojox-string"><em>dojox/string</em></a></td>
+<td>Maintained</td>
+<td>Various modules/routines for enhanced string handling.</td>
+</tr>
+<tr class="row-even"><td><em class="xref std std-ref">dojox/testing/DocTest</em></td>
+<td>Maintained</td>
+<td>A port of Python&#8217;s DocTests module.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="timing.html#dojox-timing"><em>dojox/timing</em></a></td>
+<td>Experimental</td>
+<td>A framework to deal with advanced timing constructs.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="uuid.html#dojox-uuid"><em>dojox/uuid</em></a></td>
+<td>Maintained</td>
+<td>A library capable of generating UUIDs.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="validate.html#dojox-validate"><em>dojox/validate</em></a></td>
+<td>Maintained</td>
+<td>Various validation functions that can be used for form
+validation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="xml.html#dojox-xml"><em>dojox/xml</em></a></td>
+<td>Maintained</td>
+<td>Various XML utilities.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="see-also">
+<h2><a class="toc-backref" href="#id12">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../dojo/index.html#dojo-index"><em>dojo</em></a> - The core package of Dojo Toolkit.</li>
+<li><a class="reference internal" href="../dijit/index.html#dijit-index"><em>dijit</em></a> - The main widget package of Dojo Toolkit.</li>
+</ul>
+</div>
+</div>
+
+
+                        </div>
+                    </div>
+                    <div class="sidebar unit size1of4 lastUnit">
+                        <h4>Reference Guide</h4>
+						<div id="dtkVersion">
+							<label for="refver">Dojo Version</label>
+							<select id="refver" name="refver">
+								<option value="1.6">1.6</option>
+								<option value="1.7">1.7</option>
+								<option value="1.8" selected="selected">1.8</option>
+                                <option value="1.9">1.9</option>
+							</select>
+						</div>
+                        <ul>
+                            <li><a href="../index.html">Startpage</a></li>
+                            <li><a href="../dojo/index.html">Dojo</a></li>
+                            <li><a href="../dijit/index.html">Dijit</a></li>
+                            <li><a href="#">DojoX</a></li>
+                        </ul>
+                        
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">DojoX</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#website-webapp-infrastructure">Website/WebApp Infrastructure</a></li>
+<li><a class="reference internal" href="#mobile">Mobile</a></li>
+<li><a class="reference internal" href="#language-programming">Language/Programming</a></li>
+<li><a class="reference internal" href="#graphics-and-effects">Graphics and Effects</a></li>
+<li><a class="reference internal" href="#data-visualization">Data Visualization</a></li>
+<li><a class="reference internal" href="#datastores">DataStores</a></li>
+<li><a class="reference internal" href="#communication">Communication</a></li>
+<li><a class="reference internal" href="#widgets-and-forms">Widgets and Forms</a></li>
+<li><a class="reference internal" href="#utility-modules">Utility Modules</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="image/ThumbnailPicker.html"
+                        title="previous chapter">dojox.image.ThumbnailPicker</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="info.html"
+                        title="next chapter">DojoX - Dojo Extensions and Experiments</a></p>
+    <div id="searchbox" style="display: none">
+        <h3>Quick search</h3>
+        <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+         </form>
+         <p class="searchtip" style="font-size: 90%">
+             Enter search terms or a module, class or function name.
+         </p>
+    </div>
+        </div>
+      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hide" />
+        <div id="foot">
+            <div class="innerBox">
+                <script type="text/javascript">document.write('<a href="https://docs.google.com/spreadsheet/viewform?hl=en_US&amp;formkey=dFlDcHEyaHMwbEd4MFBObkNrX0E1MFE6MQ&amp;entry_0=' + encodeURIComponent(window.location.href) + '">Error in the documentation? Can’t find what you are looking for? Let us know!</a>');</script>
+                <div class="footer">
+                      &copy; Copyright 2005-2012, Dojo Foundation.
+                      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+                </div>
+            </div>  
+        </div>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAAbTW5DVaTIHKHQe5Q75sB0BSaOaO_TgJ5c3mtQFnk5JO2zD5dZBSGHlRJ8HAPlCQCEO_FxSmyNAHSLw" type="text/javascript"></script>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>
