@@ -1,4 +1,4 @@
-Build started: Sun Jun 23 2013 21:27:39 GMT+0100 (BST)
+Build started: Fri Jun 28 2013 14:17:57 GMT+0100 (BST)
 Build application version: 1.7.0dev (23930)
 Messages:
 info(100) Assumed module uses legacy loader API.
@@ -135,9 +135,9 @@ info(100) Assumed module uses legacy loader API.
 	module: dojox/xmpp/xmppSession
 	module: dojox/xmpp/widget/ChatSession
 info(103) Optimizing module complete.
-	/Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/wiki.js (compile time:26.857s)
-	/Users/kitsonk/github/rstwiki_tst/_static/release/trunk/dojo/dojo.js (compile time:28.174s)
-	/Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/guide.js (compile time:28.156s)
+	/Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/wiki.js (compile time:27.863s)
+	/Users/kitsonk/github/rstwiki_tst/_static/release/trunk/dojo/dojo.js (compile time:30.262s)
+	/Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/guide.js (compile time:30.797s)
 info(106) Optimizing CSS.
 	file: /Users/kitsonk/github/rstwiki_tst/_static/dojo/_firebug/firebug.css
 	file: /Users/kitsonk/github/rstwiki_tst/_static/dojo/resources/dnd.css
@@ -1418,7 +1418,7 @@ wiki.js.uncompressed.js:7450: WARNING - unreachable code
 	      ^
 
 0 error(s), 3 warning(s)
-Done (compile time:26.857s)
+Done (compile time:27.863s)
 /Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/wiki.js:
 wiki.js.uncompressed.js:185: WARNING - Suspicious code. This code lacks side-effects. Is there a bug?
 	new Date("X"); // workaround for #11279, new Date("") == NaN
@@ -1433,7 +1433,7 @@ wiki.js.uncompressed.js:7450: WARNING - unreachable code
 	      ^
 
 0 error(s), 3 warning(s)
-Done (compile time:26.857s)
+Done (compile time:27.863s)
 /Users/kitsonk/github/rstwiki_tst/_static/release/trunk/dojo/dojo.js:
 dojo.js.uncompressed.js:148: WARNING - unreachable code
 	if( 0 ){
@@ -1556,7 +1556,7 @@ dojo.js.uncompressed.js:16470: WARNING - unreachable code
 	         ^
 
 0 error(s), 30 warning(s)
-Done (compile time:28.174s)
+Done (compile time:30.262s)
 /Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/wiki.js:
 wiki.js.uncompressed.js:185: WARNING - Suspicious code. This code lacks side-effects. Is there a bug?
 	new Date("X"); // workaround for #11279, new Date("") == NaN
@@ -1571,7 +1571,7 @@ wiki.js.uncompressed.js:7450: WARNING - unreachable code
 	      ^
 
 0 error(s), 3 warning(s)
-Done (compile time:26.857s)
+Done (compile time:27.863s)
 /Users/kitsonk/github/rstwiki_tst/_static/release/trunk/dojo/dojo.js:
 dojo.js.uncompressed.js:148: WARNING - unreachable code
 	if( 0 ){
@@ -1694,7 +1694,7 @@ dojo.js.uncompressed.js:16470: WARNING - unreachable code
 	         ^
 
 0 error(s), 30 warning(s)
-Done (compile time:28.174s)
+Done (compile time:30.262s)
 /Users/kitsonk/github/rstwiki_tst/_static/release/trunk/docs/guide.js:
 guide.js.uncompressed.js:11: WARNING - Suspicious code. This code lacks side-effects. Is there a bug?
 	new Date("X"); // workaround for #11279, new Date("") == NaN
@@ -1721,10 +1721,10 @@ guide.js.uncompressed.js:8728: WARNING - unreachable code
 	      ^
 
 0 error(s), 6 warning(s)
-Done (compile time:28.156s)
+Done (compile time:30.797s)
 
 
 Process finished normally
 	errors: 0
 	warnings: 53
-	build time: 107.135 seconds
+	build time: 111.025 seconds

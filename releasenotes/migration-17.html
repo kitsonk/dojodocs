@@ -329,7 +329,7 @@ dojo.declare(&quot;my.HotApplication&quot;, my.HotController, {
     return obj;
 });</textarea></div><p>There is no need to duplicate modules in a <tt class="docutils literal"><span class="pre">dojo.require()</span></tt> call versus a <tt class="docutils literal"><span class="pre">dojo/require!</span></tt> plugin, so remove the former. Additionally, if you'd like to eliminate the <tt class="docutils literal"><span class="pre">dojo.require!</span></tt> plugin all together simply remove it, expanding out the items into new <tt class="docutils literal"><span class="pre">define</span></tt> dependencies:</p>
 <div class="highlight"><pre><span class="nx">define</span><span class="p">([</span>
-    <span class="s2">&quot;dojo&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit&quot;</span><span class="p">,</span> <span class="s2">&quot;dojox&quot;</span><span class="p">,</span> <span class="s2">&quot;my/HotController&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit._Widget&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/text!my/templates/HotApplication.html&quot;</span>
+    <span class="s2">&quot;dojo&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit&quot;</span><span class="p">,</span> <span class="s2">&quot;dojox&quot;</span><span class="p">,</span> <span class="s2">&quot;my/HotController&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/_Widget&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/text!my/templates/HotApplication.html&quot;</span>
 <span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dojo</span><span class="p">,</span> <span class="nx">dijit</span><span class="p">,</span> <span class="nx">dojox</span><span class="p">,</span> <span class="nx">Controller</span><span class="p">,</span> <span class="nx">_Widget</span><span class="p">,</span> <span class="nx">template</span><span class="p">){</span>
 
     <span class="k">return</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">declare</span><span class="p">(</span><span class="s2">&quot;my.HotApplication&quot;</span><span class="p">,</span> <span class="nx">Controller</span><span class="p">,</span> <span class="p">{</span>
@@ -339,7 +339,7 @@ dojo.declare(&quot;my.HotApplication&quot;, my.HotController, {
 <span class="p">});</span>
 </pre></div>
 <div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">define([
-    &quot;dojo&quot;, &quot;dijit&quot;, &quot;dojox&quot;, &quot;my/HotController&quot;, &quot;dijit._Widget&quot;, &quot;dojo/text!my/templates/HotApplication.html&quot;
+    &quot;dojo&quot;, &quot;dijit&quot;, &quot;dojox&quot;, &quot;my/HotController&quot;, &quot;dijit/_Widget&quot;, &quot;dojo/text!my/templates/HotApplication.html&quot;
 ], function(dojo, dijit, dojox, Controller, _Widget, template){
 
     return dojo.declare(&quot;my.HotApplication&quot;, Controller, {
@@ -347,6 +347,29 @@ dojo.declare(&quot;my.HotApplication&quot;, my.HotController, {
     });
 
 });</textarea></div><p>Now we need to goto <tt class="docutils literal"><span class="pre">my/HotController.js</span></tt> and ensure it is properly using a <tt class="docutils literal"><span class="pre">define()</span></tt> call, and returning the class previously living at <tt class="docutils literal"><span class="pre">my.HotController</span></tt> (now referenced locally as <tt class="docutils literal"><span class="pre">Controller</span></tt>)</p>
+<p>To move to the more modern AMD and Dojo approach, we then want to upgrade to using the smallest modules possible, rather than all of dojo, dijit, and dojox. We also want to remove any global identifiers. The above example would then become:</p>
+<div class="highlight"><pre><span class="nx">define</span><span class="p">([</span>
+    <span class="s2">&quot;dojo/_base/declare&quot;</span><span class="p">,</span> <span class="s2">&quot;my/HotController&quot;</span><span class="p">,</span> <span class="s2">&quot;dijit/_WidgetBase&quot;</span><span class="p">,</span> <span class="s2">&quot;dojo/text!my/templates/HotApplication.html&quot;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">declareController</span><span class="p">,</span> <span class="nx">_WidgetBase</span><span class="p">,</span> <span class="nx">template</span><span class="p">){</span>
+
+    <span class="k">return</span> <span class="nx">declare</span><span class="p">(</span><span class="nx">Controller</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">templateString</span><span class="o">:</span> <span class="nx">template</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</pre></div>
+<div class="CodeGlassMiniRaw" label="" lang="javascript"><textarea style="display:none">define([
+    &quot;dojo/_base/declare&quot;, &quot;my/HotController&quot;, &quot;dijit/_WidgetBase&quot;, &quot;dojo/text!my/templates/HotApplication.html&quot;
+], function(declareController, _WidgetBase, template){
+
+    return declare(Controller, {
+        templateString: template
+    });
+
+});</textarea></div></div>
+<div class="section" id="automation">
+<h3>Automation<a class="headerlink" href="#automation" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://github.com/SitePen/dojo-amd-converter/">dojo-amd-converter</a> may help you automate some or most of the conversion of your Dojo application from pre-AMD to AMD syntax.</p>
 </div>
 </div>
 </div>
@@ -389,6 +412,7 @@ dojo.declare(&quot;my.HotApplication&quot;, my.HotController, {
 <li><a class="reference internal" href="#the-hands-off-approach">The Hands off Approach</a><ul>
 <li><a class="reference internal" href="#running-a-build">Running a build</a></li>
 <li><a class="reference internal" href="#manual-conversion">Manual Conversion</a></li>
+<li><a class="reference internal" href="#automation">Automation</a></li>
 </ul>
 </li>
 </ul>
